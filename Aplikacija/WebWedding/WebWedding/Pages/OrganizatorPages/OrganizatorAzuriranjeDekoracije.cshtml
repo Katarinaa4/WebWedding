@@ -1,0 +1,55 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorAzuriranjeDekoracijeModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+<input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="POST" enctype="multipart/form-data">
+        <div class="s">
+            <br />
+            <h1>Dodaj novu dekoraciju:</h1>
+            <br />
+            <input type="hidden" asp-for="ID" />
+            <div asp-validation-summary="All"></div>
+            <div style="display:flex;flex-direction: column; margin-left: 40%; width: 250px;">
+                <div class="border-bottom border-top">
+                    
+                    <div class="border-bottom border-top w"> Naziv: <input type="text" asp-for="novaDekoracija.Naziv" required /> </div>
+                    
+                    <div class="border-bottom border-top w"> Cena: <input type="number" asp-for="novaDekoracija.Cena" required /> </div>
+                    
+                    <div class="border-bottom border-top w"> Opis: <input type="text" asp-for="novaDekoracija.Opis" required /> </div>
+                    
+                    <div class="border-bottom border-top w"> Broj zvezdica: <input type="number" asp-for="novaDekoracija.BrojZvezdica" required /> </div>
+                    
+                    <div class="border-bottom border-top w"> Link: <input type="text" asp-for="novaDekoracija.Link" required /> </div>
+                    
+                    <div class="border-bottom border-top w"> Datum vazenja ugovora: <input type="date" asp-for="novaDekoracija.DatumVazenja" required /> </div>
+                    
+                    <div class="border-bottom border-top w"> Slika: <input type="file" asp-for="Slika" required /> </div>
+                    <br />
+                    <div class="border-bottom border-top lll"><input type="submit" value="Dodaj" /></div>
+                </div>
+            </div>
+            </div>
+            <br />
+</form>
+
+    <style scoped>
+        .w {
+            font-size: 20px;
+            color: black;
+        }
+
+
+        .lll {
+            font-size: 25px;
+            color: #8B3A3A;
+        }
+
+        .s {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+    </style>

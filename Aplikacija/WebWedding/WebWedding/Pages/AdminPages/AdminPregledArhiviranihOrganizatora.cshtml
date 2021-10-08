@@ -1,0 +1,62 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminPregledArhiviranihOrganizatoraModel
+@{
+    ViewData["Title"] = "AdminPregledArhiviranihOrganizatora";
+    Layout = "_Layout_Admin";
+}
+
+    <div style="display:flex; justify-content:center">
+        <h1 style="color:lightcoral">Pregled arhiviranih organizatora</h1>
+    </div>
+    <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Organizator[0].Ime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Organizator[0].Prezime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Organizator[0].Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Organizator[0].Sifra)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Organizator[0].Plata)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Organizator)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Prezime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sifra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Plata)
+                        </td>
+                        <td>
+                            <a asp-page="./AdminVratiOrganizatora" asp-route-id="@item.Id">Vrati</a> |
+                            <a asp-page="./AdminObrisiOrganizatora" asp-route-id="@item.Id">Obrisi</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+

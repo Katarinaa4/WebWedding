@@ -1,0 +1,73 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikPodesavanjeNalogaModel
+@{
+    ViewData["Title"] = "Podesavanja";
+    @if (Model.ImaZahtev)
+    {
+        Layout = "_LayoutKorisnikPodesavanjeSZ";
+    }
+    else
+    {
+        Layout = "_LayoutKorisnikPodesavanje";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<br />
+<br />
+    <div class="a">
+        <h1 style="color:lightcoral">Podesavanje Naloga</h1>
+
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Korisnik.Id" />
+                    <div class="form-group">
+                        <label asp-for="Korisnik.Ime" class="control-label"></label>
+                        <input asp-for="Korisnik.Ime" class="form-control" />
+                        <span asp-validation-for="Korisnik.Ime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Korisnik.Prezime" class="control-label"></label>
+                        <input asp-for="Korisnik.Prezime" class="form-control" />
+                        <span asp-validation-for="Korisnik.Prezime" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Korisnik.Email" class="control-label"></label>
+                        <input asp-for="Korisnik.Email" class="form-control" />
+                        <span asp-validation-for="Korisnik.Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Korisnik.Sifra" class="control-label"></label>
+                        <input asp-for="Korisnik.Sifra" class="form-control" />
+                        <span asp-validation-for="Korisnik.Sifra" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Korisnik.BrojTelefona" class="control-label"></label>
+                        <input asp-for="Korisnik.BrojTelefona" class="form-control" />
+                        <span asp-validation-for="Korisnik.BrojTelefona" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Snimi" class="btn btn-default" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <div>
+            <a asp-page="./AdminPocetna">Vrati se na pocetnu stranu</a>
+        </div>
+    </div>
+<br />
+<style scoped>
+    .a {
+        width: 100%;
+        display: grid;
+        align-items: center;
+        align-content: center;
+        margin-left: 37%;
+    }
+</style>
+

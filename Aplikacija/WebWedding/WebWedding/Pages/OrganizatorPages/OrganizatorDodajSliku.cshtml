@@ -1,0 +1,38 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.OrganizatorDodajSlikuModel
+@{
+    Layout = "_Layout_SlikaOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="post" enctype="multipart/form-data">
+        <div class="s">
+            <br />
+            <h1 class="lll">Nova slika: </h1>
+            <br />
+            <input type="hidden" asp-for="ID" />
+            <div asp-validation-summary="All"></div>
+            <div class="border-bottom border-top"><input type="file" asp-for="Slika" required /></div>
+            <br />
+            <div class="border-bottom border-top lll"><input type="submit" value="Dodaj" asp-page-handler="Dodaj" /></div>
+        </div>
+        <br />
+    </form>
+
+    <style scoped>
+        .w {
+            font-size: 20px;
+            color: black;
+        }
+
+
+        .lll {
+            font-size: 20px;
+            color: #8B3A3A;
+        }
+
+        .s {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+    </style>

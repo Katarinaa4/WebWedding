@@ -1,0 +1,81 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.PrikazMenija_OrganizatorModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="post">
+        <br />
+        <br />
+        <div class="m lll">
+            <h1> <a><i class="icon-heart"></i>Lista menija<i class="icon-heart"></i></a></h1>
+        </div>
+        <br />
+        <div class="col-md-8 col-md-offset-2 text-center heading-section">
+            <div><a asp-page="./OrganizatorObrisiMeni" asp-route-id="@Model.Id">Lista uklonjenih menija</a></div>
+            <br />
+        </div>
+
+            <div id="fh5co-blog-section" class="fh5co-section-gray">
+                <div class="s">
+                    <div class="s1">
+
+
+                        @foreach (var meni in Model.listaMenija)
+                        {
+                            @if (meni.Status != "NePrikazuj" && meni.Status!="Obrisan")
+                            {
+                                <div class="fh5co-blog animate-box s2">
+                                    <a><img class="img-responsive" src="@meni.Slika" alt=""></a>
+                                    <div class="blog-text">
+                                        <div class="prod-title">
+                                            <h3><a> @meni.Naziv</a> <span class="comment"></span></h3>
+                                            <p>@meni.Opis</p>
+
+                                        </div>
+                                    </div>
+                                    <div><input type="submit" asp-route-id="@meni.Id" asp-route-idP="@Model.mojP.Id" value="Ukloni meni" asp-page-handler="NP"/></div>
+                                </div>
+
+                            }
+
+                        }
+                    </div>
+                </div>
+            </div>
+
+
+</form>
+
+<style scoped>
+
+    .meni {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left:20px;
+        margin-right:20px;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .m {
+        text-align:center;
+        align-content:center;
+        width:100%;
+    }
+</style>

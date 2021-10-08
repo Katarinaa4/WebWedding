@@ -1,0 +1,59 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.IzmeniNapomenuFModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="post">
+    <br />
+    <div class="s lll">
+
+        @if (Model.izmenjeno == true)
+        {
+            <h1><a>Sadrzaj napomene je izmenjen </a></h1>
+        }
+        else
+        {
+            <h1><a>Izmenite sadrzaj napomene </a></h1>
+        }
+        <br />
+        <div><input type="text" value="@Model.napomena.SadrzajNapomene" asp-for="@Model.novSadrzaj"  /></div>
+        <br />
+        <div class="s1">
+            <div class="s2"><input type="submit" value="Sacuvaj izmenu" asp-page-handler="Sacuvaj" asp-route-id="@Model.napomena.Id" /></div>
+            <div class="s3"><input type="submit" value="Nazad" asp-page-handler="Povratak" asp-page="../OrganizatorPages/ListaNapomenaZaFotografa" asp-route-idF="@Model.fotograf.Id" asp-route-izmenjeno="@Model.izmenjeno"/></div>
+        </div>
+
+    </div>
+    <br />
+</form>
+
+<style scoped>
+
+    .lll {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-content: center;
+    }
+
+    .s2 {
+        margin-left: 80%;
+    }
+
+    .s3 {
+        margin-right: 75%;
+    }
+</style>

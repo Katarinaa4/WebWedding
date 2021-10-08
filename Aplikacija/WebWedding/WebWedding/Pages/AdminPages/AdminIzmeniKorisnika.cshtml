@@ -1,0 +1,50 @@
+﻿@page
+@model WebWedding.AdminIzmeniKorisnikaModel
+@{
+    ViewData["Title"] = "AdminIzmeniKorisnika";
+    Layout = "_Layout_Admin";
+}
+
+    <div class="row">
+        <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Korisnik.Id" />
+                <input type="hidden" asp-for="Korisnik.Arhivirano" />
+                <div class="form-group">
+                    <label asp-for="Korisnik.Ime" class="control-label"></label>
+                    <input asp-for="Korisnik.Ime" class="form-control" />
+                    <span asp-validation-for="Korisnik.Ime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Korisnik.Prezime" class="control-label"></label>
+                    <input asp-for="Korisnik.Prezime" class="form-control" />
+                    <span asp-validation-for="Korisnik.Prezime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Korisnik.Email" class="control-label"></label>
+                    <input asp-for="Korisnik.Email" class="form-control" />
+                    <span asp-validation-for="Korisnik.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Korisnik.Sifra" class="control-label"></label>
+                    <input asp-for="Korisnik.Sifra" class="form-control" />
+                    <span asp-validation-for="Korisnik.Sifra" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Broj Telefona</label>
+                    <input asp-for="Korisnik.BrojTelefona" class="form-control" />
+                    <span asp-validation-for="Korisnik.BrojTelefona" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Snimi" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div>
+    <a asp-page="./AdminPregledKorisnika">Nazad na listu korisnika</a>
+</div>
+

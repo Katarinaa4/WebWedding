@@ -1,0 +1,136 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikZahtevIzborMenijaModel
+@{
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+    @if (Model.ProstorNull)
+    {
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        Potvrdite!
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <p>Nemate izbranii prostor! izaberite prostor!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad na Moj zahtev</button>
+
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="IdiNaProstor">Izaberi prostor</button>
+                </div>
+            </div>
+        </div>
+    }
+</form>
+@if (!Model.ProstorNull)
+{ 
+<form method="POST">
+    <br/>
+    <br />
+    <div class="text-center" style="font-size:xx-large">Ovde izaberite zeljeni meni koje je ponudio restoran @Model.MojProstor.Naziv </div>
+    <div class="text-center" style="font-size:x-large;color:hotpink">Izbor menija je obavezan kako bismo izracunali ukupnu cenu Vaseg zahteva!</div>
+
+    @foreach (var meni in Model.mojiMeniji)
+    {
+        <hr class="sidebar-divider d-none d-md-block">
+        <div class="container">
+            <div class="gore">
+                <div class="text-center">
+                    <div class="col-sm-4 col-4">
+                        <div class="panel panel-primary gallery animate-box s2">
+
+
+
+                            <div class="panel-body img-responsive">
+
+                                <img src="@meni.Slika" style="width:100%;height:100%;" alt="Image">
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-4" style="text-align:left">
+                        <div style="font-size:x-large;font-style:italic"> @meni.Naziv</div>
+                        <br />
+                        <div style="font-weight:bold">Cena:@meni.Cena</div>
+                        <br />
+                        <div>@meni.Opis</div>
+                    </div>
+                    <div class="col-sm-4 col-4">
+                        @if (meni == Model.MojPrethodniMeni)
+                        {<div class="a">
+                                <div class="aa" style="text-align:right">
+
+                                    <input type="radio" class="bbla" name="IzabraniMeni" value="@meni.Id" checked required />
+                                </div>
+                                <div class="aaa" style="text-align:left;margin-top:10px">
+                                    <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold"> Ovde oznacite da zelite da izaberete ovaj meni </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="a">
+                                <div class="aa" style="text-align:right">
+
+                                    <input type="radio" class="bbla" name="IzabraniMeni" value="@meni.Id" required />
+
+                                </div>
+                                <div class="aaa" style="text-align:left;margin-top:10px">
+                                    <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold"> Ovde oznacite da zelite da izaberetog ovaj meni </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                </div>
+        </div>
+            }
+
+            <input type="hidden" asp-route-id="IzabraniMeni" />
+            @if (Model.jedinica == 1)
+            {
+                <div class="text-center">
+                    <input type="submit" value="Vrati se na pregled zahteva" asp-page-handler="NaPregled" />
+                </div>
+            }
+            else
+            {
+                <div class="text-center">
+                    <input type="submit" value="Nazad" asp-page-handler="Nazad" />
+                    <input type="submit" value="Izaberi" asp-page-handler="Izaberi" />
+                </div>
+            }
+            <br />
+</form>
+}
+
+<style scoped>
+    .a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 30px;
+    }
+
+    .aa {
+        height:50px;
+        margin-left: 60%;
+        height: 30px;
+    }
+
+    .aaa {
+       margin-left:5%;
+        height: 30px;
+    }
+    .gore {
+        margin-top: 10%;
+    }
+</style>

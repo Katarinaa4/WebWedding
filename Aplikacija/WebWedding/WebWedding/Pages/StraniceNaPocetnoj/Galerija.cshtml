@@ -1,0 +1,59 @@
+﻿@page
+@model WebWedding.Pages.GalerijaModel
+@{
+    ViewData["Title"] = "Galerija";
+    if (Model.ZaKorisnika)
+    {
+        if (Model.ImaZahtev)
+        {
+            Layout = "_Layout_Galerija_KorisnikSaZahtevom";
+        }
+        else
+        {
+            Layout = "_Layout_Galerija_KorisnikBezZahteva";
+        }
+    }
+    else
+    {
+        Layout = "_Layout_Galerija";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <form method="POST">
+
+        
+        <div class=" s1">
+
+            
+
+                @foreach (var slika in Model.mojeSlike)
+                {
+                   
+
+                        <div class="gallery animate-box s2">
+                            <a class="gallery-img image-popup" href="@slika.slika"> <img src="@slika.slika" width="400px" height="300px" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">  </a>
+                        </div>
+                       
+
+                        }
+        </div>
+
+               
+
+    </form>
+
+<style scoped>
+
+    .s1 {
+        width:100%;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%; 
+        grid-template-columns: 20% 20% 20% 20% 20%; 
+        margin-left:20px;
+    }
+
+    .s2{
+        width:90%;
+    }
+
+</style>

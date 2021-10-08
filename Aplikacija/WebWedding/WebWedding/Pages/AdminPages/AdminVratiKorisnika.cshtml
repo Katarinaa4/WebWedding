@@ -1,0 +1,55 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminVratiKorisnikaModel
+@{
+    ViewData["Title"] = "AdminVratiKorisnika";
+    Layout = "_Layout_Admin";
+}
+
+    <div style=" display:flex;
+                 flex-direction:column;
+                 align-items:center">
+
+        <h2 style="display:flex;color:lightcoral;">Da li ste sigurni da zelite da vratite ovog korisnika?</h2>
+        <div>
+            <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Ime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Ime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Prezime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Prezime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Sifra)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Sifra)
+                </dd>
+                <dt>
+                    Broj Telefona
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.BrojTelefona)
+                </dd>
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Korisnik.Id" />
+                <input type="submit" value="Vrati" class="btn btn-default" /> |
+                <a asp-page="./AdminPregledArhiviranihKorisnika">Nazad na listu arhiviranih korisnika</a>
+            </form>
+        </div>
+</div>

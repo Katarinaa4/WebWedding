@@ -1,0 +1,55 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminPretvoriUOrgModel
+@{
+    ViewData["Title"] = "AdminPretvoriUOrg";
+    Layout = "_Layout_Admin";
+}
+
+    <div style=" display:flex;
+                 flex-direction:column;
+                 align-items:center">
+
+        <h3>Da li ste sigurni da zelite da ovog korisnika pretvorite u organizatora?</h3>
+        <div>
+            <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Ime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Ime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Prezime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Prezime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Korisnik.Sifra)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.Sifra)
+                </dd>
+                <dt>
+                    Broj Telefona
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Korisnik.BrojTelefona)
+                </dd>
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Korisnik.Id" />
+                <input type="submit" value="Pretvori" class="btn btn-default" /> |
+                <a asp-page="./AdminPregledKorisnika">Nazad na listu korisnika</a>
+            </form>
+        </div>
+</div>

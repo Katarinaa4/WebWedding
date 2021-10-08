@@ -1,0 +1,29 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.OdustaniModel
+@{
+    ViewData["Title"] = "Odustani";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <form method="POST">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        Da li ste sigurni da zelite da izbrisete ovaj Vas zahtev?
+                    </div>
+                </div>
+                <div class="modal-body text-center">
+                    <p>Jos uvek mozete izmeniti Vas zahtev pre konacnog brisanja, samo izaberite Nazad!</p>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="Nazad"> Nazad na Moj zahtev</button>
+
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="Odustani">Zelim da izbrisem Moj zahtev!</button>
+                </div>
+            </div>
+        </div>
+    </form>

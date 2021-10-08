@@ -1,0 +1,58 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorNoviZahteviModel
+@{
+    Layout = "_Layout_Zahtev";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="post">
+        <br />
+        <br />
+        <h2 class="ss ll">Lista novih zahteva</h2>
+        <hr />
+        <br />
+        <div>
+            @foreach (var zahtev in Model.Zahtevi)
+            {
+                @if (zahtev.Status == null)
+                {
+                    <div class="a">
+                        <i class="icon-bookmark"> Zahtev korisnika @zahtev.MojKorisnik.Ime @zahtev.MojKorisnik.Prezime podnet @zahtev.DatumPodnosenjaZahteva, status neobradjen </i>
+                        <a asp-route-id="@zahtev.Id" asp-page="./OrganizatorObradaZahteva">Obradi zahtev</a>
+                    </div>
+                    <br />
+                    <hr>
+                }
+            }
+        </div>
+
+
+        </form>
+
+
+      
+    <style scoped>
+
+        .s {
+            font-size: 17px;
+            margin-left: 25px;
+        }
+
+        .ss {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+
+        .ll {
+            font-size: 40px;
+            color: #8B3A3A;
+        }
+
+        .a {
+            font-size: 15px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 70% 15% 15%;
+            margin-left: 50px;
+        }
+    </style>

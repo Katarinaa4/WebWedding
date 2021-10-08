@@ -1,0 +1,270 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorONamaModel
+@{
+    Layout = "_Layout_Organizator_ONama";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<br />
+<br />
+<br />
+<form method="GET">
+    <div>
+
+        <h1 class="ss lll"> <a><i class="icon-heart"></i>Dodaj firmu<i class="icon-heart"></i></a></h1>
+        <div class="oNama s1 s">
+            <input class="ll" type="submit" asp-page="./OrganizatorAzuriranjeProstora" value="+Prostor" />
+            <input class="ll" type="submit" asp-page="./OrganizatorAzuriranjeMuzike" value="+Muzika" />
+            <input class="ll" type="submit" asp-page="./OrganizatorAzuriranjeDekoracije" value="+Dekoracija" />
+            <input class="ll" type="submit" asp-page="./OrganizatorAzuriranjeFotografa" value="+Fotograf" />
+        </div>
+    </div>
+</form>
+<br />
+<br />
+<br />
+
+<form method="POST">
+
+    <div class="fh5co-section-gray">
+        <div class="sss ">
+
+
+
+            @foreach (var pros in Model.mojiProstori)
+            {
+            <div id="fh5co-blog-section" class="fh5co-section-gray">
+                @if (pros.StatusPrikaza == "Prikaz")
+                {
+
+                    <div class="s2 s7"><a asp-page="../OrganizatorPages/ListaNapomenaZaProstor" asp-route-id="@pros.Id">Lista napomena<i class="icon-list"></i></a></div>
+                    <br />
+                    <div class="fh5co-blog animate-box s2">
+                        <a href="@pros.Link"><img class="img-responsive" src="@pros.Slika" alt=""></a>
+                        <div class="blog-text">
+                            <div class="prod-title">
+                                <div class="l s1">
+                                    <h1 class="levo"><a href="@pros.Link"> @pros.Naziv</a></h1>
+                                    <div class="desno">
+                                    @for (var i = 0; i < pros.BrojZvezdica; i++)
+                                    {
+                                        <span class="comment">
+                                            <a><i class="icon-star"></i></a>
+                                        </span>
+                                    }
+                                    </div>
+                                </div>
+                                <div><span class="by"><i class="icon-address"></i> @pros.Adresa</span></div>
+                                <div><span class="comment"> Max kapacitet - @pros.Kapacitet</span></div>
+                                <p>@pros.Opis</p>
+                                <p><a asp-page="../OrganizatorPages/PrikazMenija_Organizator" asp-route-id="@pros.Id"><i class="icon-address-book"></i>   Meniji...</a></p>
+                                <p><a asp-page="../Kalendari/KalendarProstori" asp-route-id="@pros.Id"><i class="icon-calendar"></i>   Zakazani i rezervisani datumi...</a></p>
+                            </div>
+                        </div>
+                        <div class="s1">
+                            <div class="s2"><input type="submit" value=" Ukloni prostor" asp-route-id="@pros.Id" asp-page-handler="PromeniStatus" /></div>
+                            <div class="s2"><input type="submit" value="Dodaj meni" asp-route-id="@pros.Id" asp-page="./KreirajMeni" /> </div>
+                            <div class="s2"><input type="submit" value="Dodaj zakazani termin" asp-route-id="@pros.Id" asp-page="./KreirajZakazani" /> </div>
+                            <div class="s2"><input type="submit" value="Dodaj rezervisani termin" asp-route-id="@pros.Id" asp-page="./KreirajRezervisani" /> </div>
+                            <div class="s2"><input type="submit" asp-page="../OrganizatorPages/KreirajNapomenuProstor" value="Dodaj napomenu" asp-route-id="@pros.Id" /></div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            }
+
+
+            @foreach (var muzika in Model.mojaMuzika)
+            {
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            @if (muzika.StatusPrikaza == "Prikaz")
+            {
+                <div class="s2 s7"><a asp-page="../OrganizatorPages/ListaNapomenaZaMuziku" asp-route-id="@muzika.Id">Lista napomena<i class="icon-list"></i></a></div>
+                <br />
+                <div class="fh5co-blog animate-box s2">
+                    <a href="@muzika.Link"><img class="img-responsive" src="@muzika.Slika" alt=""></a>
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <div class="l s1">
+                                <h1 class="levo"><a href="@muzika.Link"> @muzika.Naziv</a></h1>
+                                <div class="desno">
+                                    @for (var i = 0; i < muzika.BrojZvezdica; i++)
+                                    {
+                                        <span class="comment">
+                                            <a><i class="icon-star"></i></a>
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            <span class="by">Cena - @muzika.Cena rsd</span>
+                            <p>@muzika.Opis</p>
+                            <p><a asp-page="../Kalendari/KalendarMuzika" asp-route-id="@muzika.Id"><i class="icon-calendar"></i>   Zakazani i rezervisani datumi...</a></p>
+                        </div>
+                    </div>
+                    <div class="s1">
+                        <div class="s2"><input type="submit" value=" Ukloni muziku" asp-route-id="@muzika.Id" asp-page-handler="UkloniMuziku" /></div>
+                        <div class="s2"><input type="submit" value="Dodaj zakazani termin" asp-route-id="@muzika.Id" asp-page="./KreirajZakazaniMuzika" /> </div>
+                        <div class="s2"><input type="submit" value="Dodaj rezervisani termin" asp-route-id="@muzika.Id" asp-page="./KreirajRezervisaniMuzika" /> </div>
+                        <div class="s2"><input type="submit" asp-page="../OrganizatorPages/KreirajNapomenuMuzika" value="Dodaj napomenu" asp-route-id="@muzika.Id" /></div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+            }
+
+
+            @foreach (var foto in Model.mojiFotografi)
+            {
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            @if (foto.StatusPrikaza == "Prikaz")
+            {
+                <div class="s2 s7"><a asp-page="../OrganizatorPages/ListaNapomenaZaFotografa" asp-route-id="@foto.Id">Lista napomena<i class="icon-list"></i></a></div>
+                <br />
+                <div class="fh5co-blog animate-box s2">
+                    <a href="@foto.Link"><img class="img-responsive" src="@foto.Slika" alt=""></a>
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <h1 ><a href="@foto.Link"> @foto.Ime @foto.Prezime <i class="icon-camera4"></i></a> </h1>
+                            <span class="by">Cena - @foto.Cena rsd</span>
+                            <p>@foto.Opis</p>
+                            <p><a asp-page="../Kalendari/KalendarFotografi" asp-route-id="@foto.Id"><i class="icon-calendar"></i>   Zakazani i rezervisani datumi...</a></p>
+                        </div>
+                    </div>
+                    <div class="s1">
+                        <div class="s2"><input type="submit" value=" Ukloni fotografa" asp-route-id="@foto.Id" asp-page-handler="UkloniFotografa" /></div>
+                        <div class="s2"><input type="submit" value="Dodaj zakazani termin" asp-route-id="@foto.Id" asp-page="./KreirajZakazaniFotograf" /> </div>
+                        <div class="s2"><input type="submit" value="Dodaj rezervisani termin" asp-route-id="@foto.Id" asp-page="./KreirajRezervisanFotograf" /> </div>
+                        <div class="s2"><input type="submit" asp-page="../OrganizatorPages/KreirajNapomenuFotograf" value="Dodaj napomenu" asp-route-id="@foto.Id" /></div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+            }
+
+            @foreach (var deko in Model.mojaDekoracija)
+            {
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            @if (deko.StatusPrikaza == "Prikaz")
+            {
+                <div class="s2 s7"><a asp-page="../OrganizatorPages/ListaNapomenaZaDekoraciju" asp-route-id="@deko.Id">Lista napomena<i class="icon-list"></i></a></div>
+                <br />
+                <div class="fh5co-blog animate-box s2">
+                    <a href="@deko.Link"><img class="img-responsive" src="@deko.Slika" alt=""></a>
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <div class="l s1">
+                                <h1 class="levo"><a href="@deko.Link"> @deko.Naziv </a></h1>
+                                <div class="desno">
+                                    @for (var i = 0; i < deko.BrojZvezdica; i++)
+                                    {
+                                        <span class="comment">
+                                            <a><i class="icon-star"></i></a>
+                                        </span>
+                                    }
+                                </div>
+                            </div>
+                            <span class="by">Cena - @deko.Cena rsd</span>
+                            <p>@deko.Opis</p>
+                            <p><a asp-page="../Kalendari/KalendarDekoracije" asp-route-id="@deko.Id"><i class="icon-calendar"></i>   Zakazani i rezervisani datumi...</a></p>
+                        </div>
+                    </div>
+                    <div class="s1">
+                        <div class="s2"><input type="submit" value=" Ukloni dekoraciju" asp-route-id="@deko.Id" asp-page-handler="UkloniDekoraciju" /></div>
+                        <div class="s2"><input type="submit" value="Dodaj zakazani termin" asp-route-id="@deko.Id" asp-page="./KreirajZakazaniDekoracija" /> </div>
+                        <div class="s2"><input type="submit" value="Dodaj rezervisani termin" asp-route-id="@deko.Id" asp-page="./KreirajRezervisaniDekoracija" /> </div>
+                        <div class="s2"><input type="submit" asp-page="../OrganizatorPages/KreirajNapomenuDekoracija" value="Dodaj napomenu" asp-route-id="@deko.Id" /></div>
+                    </div>
+                </div>
+
+            }
+        </div>
+            }
+        </div>
+    </div>
+
+</form>
+
+
+
+
+
+<style scoped>
+
+    .ww {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+
+    .sss {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+        align-content: center;
+        margin-left:30px;
+        
+    }
+
+    .s3{
+        margin-left:100%;
+    }
+
+    .s{
+        align-content:center;
+    }
+
+     .lll {
+        font-size: 35px;
+        color: #8B3A3A;
+    }
+
+     .l {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+     .ll {
+        
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .ss {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .s7 {
+        font-size:15px;
+    }
+
+    .levo{
+        width: 100%;
+        text-align:start;
+        align-content:flex-start;
+        
+    }
+
+    .desno{
+        width: 100%;
+        text-align: end;
+        align-content:flex-start;
+        
+    }
+
+</style>

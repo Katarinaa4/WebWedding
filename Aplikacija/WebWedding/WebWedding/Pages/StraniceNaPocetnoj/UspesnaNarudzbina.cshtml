@@ -1,0 +1,77 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.UspesnaNarudzbinaModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if (Model.ImaZahtev)
+        {
+            Layout = "_Layout_PlanerKSZ";
+        }
+        else
+        {
+            Layout = "_Layout_PlanerKBZ";
+        }
+
+    }
+    else
+    {
+        Layout = "_Layout_PlanerK";
+    }
+}
+<input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title w">
+                Obavestenje
+            </h2>
+        </div>
+        <div class="modal-body s1 ">
+            <div class=" animate-box s3">
+                <div class="blog-text k">
+                    Vasa narudzbina je uspesno izvrsena!
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+
+            <button type="submit" class="btn btn-secondary" asp-page-handler="Nazad">
+                Zatvori
+            </button>
+        </div>
+    </div>
+    </div>
+</form>
+
+<style scoped>
+
+    .w {
+        font-size: 40px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        margin-left: 180px;
+        margin-right: 30px;
+    }
+
+    .s2 {
+        width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .s3 {
+        width: 60%;
+        text-align: center;
+    }
+
+    .k {
+        font-size: 30px;
+        color: black;
+    }
+</style>
+
+

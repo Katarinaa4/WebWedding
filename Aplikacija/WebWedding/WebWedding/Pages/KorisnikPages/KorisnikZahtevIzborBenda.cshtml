@@ -1,0 +1,210 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikZahtevIzborBendaModel
+@{
+    ViewData["Title"] = "KorisnikZahtevIzborBenda";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+    @if (Model.PotvrdiDaNeZelis)
+    {
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        Potvrdite!
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <p>Da li ste sigurni da ne zelite neki od ponudjenih bendova?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad</button>
+                    @if (Model.OvoJeZaNullIzaberi)
+                    {
+                        <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelimProstor">Dalje</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelim">
+                            Ne zelim
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</form>
+@if (!Model.PotvrdiDaNeZelis)
+{
+<form method="POST">
+    <br />
+    <div class="text-center" style="font-size:xx-large"> WebWedding agencija posluje sa najboljim bendovima, grupama i muzičarama idealnih za venčanje. </div>
+    <div class="text-center" style="font-size:x-large;color:hotpink">Pronađite najbolje muzičare u regionu!</div>
+    @foreach (var muzika in Model.SvaMuzika)
+    {
+    <div class="row-bottom-padded-sm">
+        @if (muzika.StatusPrikaza == "Prikaz")
+        {
+            @foreach (var rezervisani in muzika.Rezervisani)
+            {
+                @if (rezervisani.datum == Model.MojZahtev.IzabraniDatum)
+                {
+                    Model.R = true;
+                }
+
+            }
+
+            @foreach (var zakazani in muzika.Zakazani)
+            {
+                @if (zakazani.datum == Model.MojZahtev.IzabraniDatum)
+                {
+                    Model.Z = true;
+                }
+
+            }
+            @if (!Model.Z && !Model.R)
+            {
+                <hr class="sidebar-divider d-none d-md-block">
+                <div class="container">
+                    <div class="gore">
+                        <div class="row row-eq-height">
+                            <div class="col-sm-4 col-4">
+                                <div class="panel panel-primary gallery animate-box s2">
+
+
+
+                                    <div class="panel-body" style="width:100%;height:100%;">
+
+                                        <img src="@muzika.Slika" style="width:100%;height:100%;" alt="Image">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-4" style="text-align:left">
+                                <div style="font-size:x-large;font-style:italic">@muzika.Naziv</div>
+                                <br />
+                                <div style="font-weight:bold">Cena: @muzika.Cena</div>
+                                <br />
+                                <div> @muzika.Opis</div>
+
+                                <br />
+                                <div>
+                                    @for (var i = 0; i < muzika.BrojZvezdica; i++)
+                                    {
+                                        <span class="comment">
+                                            <a><i class="icon-star"></i></a>
+                                        </span>
+                                    }
+                                </div>
+                                <br />
+                                <div>Na ovom linku mozete detaljinije pogledati o ovom bendu:<a href="@muzika.Link"> @muzika.Link </a></div>
+                            </div>
+                            <div class="col-sm-4 col-4">
+                                @if (muzika == Model.PrethodniBend)
+                                {<div class="a">
+                                        <div class="aa">
+
+                                            <input type="radio" class="bbla" name="Stiklirano" value="@muzika.Id" checked  />
+
+                                        </div>
+                                        <div class="aaa" style="margin-top:10px">
+                                            <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold"> Ovde oznacite da zelite da izaberete ovu muziku</div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div style="margin-top:20px">
+                                        <input type="submit" value="Odustani od ovog benda" asp-page-handler="Odcekiraj" />
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="a">
+                                        <div class="aa">
+
+                                            <input type="radio" class="bbla" name="Stiklirano" value="@muzika.Id"  />
+
+                                        </div>
+                                        <div class="aaa" style="margin-top:10px">
+                                            <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold"> Ovde oznacite da zelite da izaberete ovu muziku </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        </div>
+                </div>
+             }
+         }
+                        </div>
+                        }
+                        <input type="hidden" asp-route-id="Stiklirano" />
+
+                        @if (Model.jedinica == 1)
+                        {
+                            <div class="text-center">
+                                <input class="btn btn-success" style="margin-top: 20px;" type="submit" value="Vrati se na pregled zahteva" asp-page-handler="NaPregled" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <input type="submit" class="btn btn-outline-dark" style="margin-top: 20px;" value="Nazad" asp-page-handler="Nazad" />
+                                <input type="submit" class="btn btn-success" style="margin-top: 20px;" value="Izaberi" asp-page-handler="Izaberi" />
+                            </div>
+
+                        }
+
+                        <br />
+</form>
+}
+<style scoped>
+
+    .ww {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    
+
+    
+
+   
+    .a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 30px;
+    }
+
+    .aa {
+        height:50px;
+        margin-left: 20%;
+        height: 30px;
+    }
+
+    .aaa {
+        margin-left: -10%;
+        height: 30px;
+    }
+
+    .radioo {
+        margin: 90%;
+    }
+
+    .gore {
+        margin-top: 10%;
+    }
+</style>

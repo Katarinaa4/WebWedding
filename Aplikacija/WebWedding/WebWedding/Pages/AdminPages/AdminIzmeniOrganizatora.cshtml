@@ -1,0 +1,50 @@
+﻿@page
+@model WebWedding.AdminIzmeniOrganizatoraModel
+@{
+    ViewData["Title"] = "AdminIzmeniOrganizatora";
+    Layout = "_Layout_Admin";
+}
+
+<div class="row">
+    <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Organizator.Id" />
+            <input type="hidden" asp-for="Organizator.Arhivirano" />
+            <div class="form-group">
+                <label asp-for="Organizator.Ime" class="control-label"></label>
+                <input asp-for="Organizator.Ime" class="form-control" />
+                <span asp-validation-for="Organizator.Ime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Organizator.Prezime" class="control-label"></label>
+                <input asp-for="Organizator.Prezime" class="form-control" />
+                <span asp-validation-for="Organizator.Prezime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Organizator.Email" class="control-label"></label>
+                <input asp-for="Organizator.Email" class="form-control" />
+                <span asp-validation-for="Organizator.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Organizator.Sifra" class="control-label"></label>
+                <input asp-for="Organizator.Sifra" class="form-control" />
+                <span asp-validation-for="Organizator.Sifra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Organizator.Plata" class="control-label"></label>
+                <input asp-for="Organizator.Plata" class="form-control" />
+                <span asp-validation-for="Organizator.Plata" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Snimi" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./AdminPregledOrganizatora">Nazad na listu organizatora</a>
+</div>
+

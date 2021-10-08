@@ -1,0 +1,96 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.PrikazFotografModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if (Model.ImaZahtev)
+        {
+            Layout = "_LayoutSZ";
+        }
+        else
+        {
+            Layout = "_LayoutBZ";
+        }
+    }
+    else
+    {
+        Layout = "_LayoutMeniji";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
+        <div class="s">
+            <div class="n">
+                <h1>Firme sa kojima saradjujemo</h1>
+                <div style="font-size:large">U okviru svake firme mozete videti koji datumi su slobodni!</div>
+                <br />
+            </div>
+            <br />
+            <div class="s1">
+
+
+                @foreach (var foto in Model.mojiFotografi)
+                {
+                    <div>
+                        @if (foto.StatusPrikaza == "Prikaz")
+                        {
+
+                            <div class="fh5co-blog animate-box s2">
+                                <a href="@foto.Link"><img class="img-responsive" src="@foto.Slika" alt=""></a>
+                                <div class="blog-text">
+                                    <div class="prod-title">
+                                        <h1><a href="@foto.Link"> @foto.Ime @foto.Prezime <i class="icon-camera4"></i></a> </h1>
+                                        <span class="by">Cena - @foto.Cena rsd</span>
+                                        <p>@foto.Opis</p>
+                                        @if (Model.ZaKorisnika)
+                                        {
+                                            <p><a asp-page="../Kalendari/KorisnikKalendarFotografi" asp-route-id="@foto.Id"><i class="icon-calendar"></i>   Zakazani i rezervisani datumi...</a></p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</form>
+
+<style scoped>
+
+    .ww {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .n {
+        width: 100%;
+        align-content: center;
+        text-align: center;
+    }
+
+    .s {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+</style>
+

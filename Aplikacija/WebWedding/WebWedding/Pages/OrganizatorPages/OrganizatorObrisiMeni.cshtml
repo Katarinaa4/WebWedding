@@ -1,0 +1,77 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.OrganizatorObrisiMeniModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="post">
+    <br />
+    <h1>Uklonjeni meniji</h1>
+    <br />
+    @if(Model.pom)
+    {
+        <h2>@Model.Obavestenje</h2>
+    }
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
+        <div class="s">
+            <div class="s1">
+
+
+                @foreach (var meni in Model.listaMenija)
+                {
+                    @if (meni.Status == "NePrikazuj")
+                    {
+                        <div class="fh5co-blog animate-box s2">
+                            <a><img class="img-responsive" src="@meni.Slika" alt=""></a>
+                            <div class="blog-text">
+                                <div class="prod-title">
+                                    <h3><a> @meni.Naziv</a> <span class="comment"></span></h3>
+                                    <p>@meni.Opis</p>
+
+                                </div>
+                            </div>
+                            <input type="submit" asp-route-id="@meni.Id" asp-route-idP="@Model.mojP.Id" value="Vrati meni" asp-page-handler="Vrati" />
+                            <input type="submit" asp-route-id="@meni.Id" asp-route-idP="@Model.mojP.Id" value="Obrisi meni" asp-page-handler="Obrisi" />
+                        </div>
+
+                    }
+
+                }
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+<style scoped>
+
+    .meni {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .m {
+        text-align: center;
+        align-content: center;
+        width: 100%;
+    }
+</style>

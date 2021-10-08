@@ -1,0 +1,52 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.GreskaRegistrovanjaModel
+@{
+    Layout = "_LayoutRegistracija";
+}
+
+    <form method="post">
+
+        <div class="prvi">Korisnik sa unetim Email-om već postoji!</div>
+        <div class="drugi">Pokušajte ponovo</div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" asp-for="NovKorisnik.Ime" required>
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name" asp-for="NovKorisnik.Prezime" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" asp-for="NovKorisnik.Email" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="exampleInputNumber" placeholder="Phone Number" asp-for="NovKorisnik.BrojTelefona" required>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" asp-for="NovKorisnik.Sifra" required>
+            </div>
+            <div class="col-sm-6">
+                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" asp-for="sifra" required>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account" asp-page-handler="Registruj" />
+    </form>
+
+
+<style scoped>
+
+    .prvi {
+        font-family:'Arial Rounded MT';
+        color:pink;
+        font-size:30px;
+    }
+
+    .drugi {
+        font-family:'Arial Rounded MT';
+        color:lightpink;
+        font-size:25px;
+    }
+
+</style>

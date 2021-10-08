@@ -1,0 +1,496 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikPregledZahtevaModel
+@{
+    ViewData["Title"] = "KorisnikPregledZahteva";
+    if (Model.ImaVecZahtev)
+    {
+        Layout = "_LayoutKorisnikSaZahtevom ";
+    }
+    else
+    {
+        Layout = "_LayoutKorisnik";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+@if (Model.ImaVecZahtev)
+{
+    <form method="POST">
+        <div style="overflow-x:auto;overflow-y:auto" class="table-responsive text-nowrap">
+            <table id="tablePreview" class="table table-striped table-hover text-center" style="height:350px">
+                <thead>
+                    <tr>
+                        <th>
+
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/date_range.png" />
+                                </div>
+                                <div class="text-center">
+                                    Datum odrzavanja:
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/local_bar.png" />
+                                </div>
+                                <div class="text-center">
+                                    Izabrani prostor:
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/people.png" />
+                                </div>
+                                <div class="text-center">
+                                    Izabrani broj gostiju:
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/local_dining.png" />
+                                </div>
+                                <div class="text-center">
+                                    Izabrani meni:
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/music_video.png" />
+                                </div>
+                                <div class="text-center">
+                                    Izabrana muzika:
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/linked_camera.png" />
+                                </div>
+                                <div class="text-center">
+                                    Izabrani fotograf:
+                                </div>
+                            </div>
+                        </th>
+                        <th>
+                            <div>
+                                <div class="text-center">
+                                    <img src="~/images/local_florist.png" />
+                                </div>
+                                <div class="text-center">
+                                    Izabrana dekoracija:
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="text-center font-weight-bold font-weight-bolder">
+                                Izabrali ste:
+                            </div>
+                        </td>
+                        <td>
+                            <div> @Model.MojZahtev.IzabraniDatum</div>
+
+                        </td>
+                        <td>
+                            @if (Model.MojZahtev.MojProstor != null)
+                            {
+                                <div>  @Model.MojZahtev.MojProstor.Naziv</div>
+
+                            }
+                        </td>
+                        <td>
+                            @if (@Model.MojZahtev.BrojGostiju != null)
+                            {
+                                <div> @Model.MojZahtev.BrojGostiju</div>
+                            }
+
+                        </td>
+                        <td>
+                            @if (@Model.MojZahtev.MojMeni != null)
+                            {
+                                <div> @Model.MojZahtev.MojMeni.Naziv</div>
+
+
+                            }
+
+                        </td>
+                        <td>
+                            @if (@Model.MojZahtev.MojaMuzika != null)
+                            {
+
+                                <div> @Model.MojZahtev.MojaMuzika.Naziv</div>
+
+
+
+                            }
+
+                        </td>
+                        <td>
+                            @if (Model.MojZahtev.MojFotograf != null)
+                            {
+
+                                <div> @Model.MojZahtev.MojFotograf.Ime</div>
+
+
+                            }
+
+
+                        </td>
+                        <td>
+
+                            @if (@Model.MojZahtev.MojaDekoracija != null)
+                            {
+
+                                <div> @Model.MojZahtev.MojaDekoracija.Naziv</div>
+                            }
+
+                        </td>
+                    </tr>
+                    @if (Model.MojZahtev.Poslato == true)
+                    {
+                        <tr>
+                            <td>
+                                <div class="text-center font-weight-bold">
+                                    Odgovor:
+                                </div>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.MojProstor != null)
+                                {
+                                    @if (Model.MojZahtev.Poslato == true)
+                                    {
+                                        @if (Model.MojZahtev.Status == "Odbijen")
+                                        {
+                                            @if (Model.MojZahtev.PotvrdjenoProstor == true)
+                                            {
+                                                <p class="text-center">Cestitam,<br /> Vas zahtev za ovim prostor je potvrdjen!<br /> Ocekujte poziv nekog od nasih organizatora u vezi detaljnijih dogovora! </p>
+                                            }
+                                            else if (Model.MojZahtev.PotvrdjenoProstor == false)
+                                            {
+                                                Model.ImaNepotvrdjenih = true;
+                                                <p class="text-center">Zao nam je,<br /> nismo u mogucnosti da ispunimo ovaj Vas zahtev, <br />ukoliko zelite izaberite neku drugu opciju od ponudjenih i opet posaljite zahtev!</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-center">Ovaj vas zahtev jos uvek nije pregledan,<br /> dobicete naknadno obavestenje!</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div>U obradi!</div>
+                                        }
+
+
+                                    }
+
+                                }
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.MojMeni != null)
+                                {
+                                    @if (Model.MojZahtev.Poslato == true)
+                                    {
+                                        @if (Model.MojZahtev.Status == "Odbijen")
+                                        {
+                                            @if (Model.MojZahtev.PotvrdjenoMeni == true)
+                                            {
+                                                <p class="text-center">Cestitam, <br />Vas zahtev za ovaj meni je potvrdjen! <br />Ocekujte poziv nekog od nasih organizatora u vezi detaljnijih dogovora! </p>
+                                            }
+                                            else if (Model.MojZahtev.PotvrdjenoMeni == false)
+                                            {
+                                                Model.ImaNepotvrdjenih = true;
+                                                <p class="text-center">Zao nam je,<br /> nismo u mogucnosti da ispunimo ovaj Vas zahtev,<br /> ukoliko zelite izaberite neku drugu opciju od ponudjenih i opet posaljite zahtev!</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-center">Ovaj vas zahtev jos uvek nije pregledan,<br /> dobicete naknadno obavestenje!</p>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <div>U obradi!</div>
+                                        }
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.MojaMuzika != null)
+                                {
+
+
+                                    @if (Model.MojZahtev.Poslato == true)
+                                    {
+                                        @if (Model.MojZahtev.Status == "Odbijen")
+                                        {
+                                            @if (Model.MojZahtev.PotvrdjenoMuzika == true)
+                                            {
+                                                <p class="text-center">Cestitam, <br /> Vas zahtev za ovom muzikom je potvrdjen! <br /> Ocekujte poziv nekog od nasih organizatora u vezi detaljnijih dogovora! </p>
+                                            }
+                                            else if (Model.MojZahtev.PotvrdjenoMuzika == false)
+                                            {
+                                                Model.ImaNepotvrdjenih = true;
+                                                <p class="text-center">Zao nam je,<br /> nismo u mogucnosti da ispunimo ovaj Vas zahtev, <br /> ukoliko zelite izaberite neku drugu opciju od ponudjenih i opet posaljite zahtev!</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-center">Ovaj vas zahtev jos uvek nije pregledan,<br />  dobicete naknadno obavestenje!</p>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <div>u obradi!</div>
+                                        }
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.MojFotograf != null)
+                                {
+                                    @if (Model.MojZahtev.Poslato == true)
+                                    {
+                                        @if (Model.MojZahtev.Status == "Odbijen")
+                                        {
+                                            @if (Model.MojZahtev.PotvrdjenoFotograf == true)
+                                            {
+                                                <p class="text-center">Cestitam, <br /> Vas zahtev za ovim fotografom je potvrdjen! <br /> Ocekujte poziv nekog od nasih organizatora u vezi detaljnijih dogovora! </p>
+                                            }
+                                            else if (Model.MojZahtev.PotvrdjenoFotograf == false)
+                                            {
+
+
+                                                Model.ImaNepotvrdjenih = true;
+                                                <p class="text-center">Zao nam je, <br /> Nismo u mogucnosti da ispunimo ovaj Vas zahtev <br /> ukoliko zelite izaberite neku drugu opciju od ponudjenih i opet posaljite zahtev!</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="text-center">Ovaj vas zahtev jos uvek nije pregledan <br /> dobicete naknadno obavestenje!</p>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <div>U obradi!</div>
+                                        }
+                                    }
+                                }
+                            </td>
+                            <td width="70px">
+                                @if (Model.MojZahtev.MojaDekoracija != null)
+                                {
+                                    @if (Model.MojZahtev.Poslato == true)
+                                    {
+                                        @if (Model.MojZahtev.Status == "Odbijen")
+                                        {
+                                            @if (Model.MojZahtev.PotvrdjenoDekoracija == true)
+                                            {<div class="text-center">
+                                                    <p class="text-center">Cestitam, 
+                                <br />Vas zahtev za ovom dekoracijom je potvrdjen! <br />Ocekujte poziv nekog od nasih organizatora u vezi detaljnijih dogovora! </p>
+                                                </div>
+                                            }
+                                            else if (Model.MojZahtev.PotvrdjenoDekoracija == false)
+                                            {
+                                                <div>
+                                                    Model.ImaNepotvrdjenih = true;
+                                                    <p class="text-center" style="max-width:15%">Zao nam je <br /> nismo u mogucnosti da ispunimo ovaj Vas zahtev <br /> ukoliko zelite izaberite neku drugu opciju od ponudjenih i opet posaljite zahtev!</p>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div style="max-width:15%">
+                                                    <p class="text-center">Ovaj vas zahtev jos uvek nije pregledan <br /> dobicete naknadno obavestenje!</p>
+                                                </div>
+                                            }
+
+                                         }
+                                         else
+                                         {
+                                            <div>U obradi!</div>
+                                         }
+                                     }
+                                 }
+                            </td>
+                        </tr>
+                    }
+
+                    @if (Model.MojZahtev.Poslato == false)
+                    {
+                        <tr>
+                            <td>
+                                <div class="text-center">
+                                    <img src="~/images/build.png" style="height:40px;width:40px" />
+                                </div>
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    <input type="submit" asp-route-id="1" asp-page="./NazadNaDatum" value="Izmeni datum" class="btn btn-danger btn-rounded btn-sm my-0" />
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    <input type="submit" asp-route-id="1" asp-page="./KorisnikZahtevPrikazSlobodnihProstora" value="Izmeni Prostor" class="btn btn-danger btn-rounded btn-sm my-0"/>
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    @if (Model.MojZahtev.MojProstor != null)
+                                    {
+                                    <input type="submit" asp-route-id="1" asp-page="./KorisnikBrojGostiju" value="Izmeni broj gostiju" class="btn btn-danger btn-rounded btn-sm my-0"/>
+
+                                    }
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    @if (Model.MojZahtev.MojProstor != null)
+                                    {
+                                       <input type="submit" value="Izmeni meni" asp-page="./KorisnikZahtevIzborMenija" asp-route-id="1" class="btn btn-danger btn-rounded btn-sm my-0" />
+
+                                     }
+                                 }
+                              
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    <input type="submit" value="Izmeni muziku" asp-page="./KorisnikZahtevIzborBenda" asp-route-id="1" class="btn btn-danger btn-rounded btn-sm my-0" />
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    <input type="submit" value="Izmeni fotografa" asp-page="./KorisnikZahtevIzborFotografa" asp-route-id="1" class="btn btn-danger btn-rounded btn-sm my-0" />
+                                }
+                                else
+                                {
+
+                                }
+                            </td>
+                            <td>
+                                @if (Model.MojZahtev.Poslato == false)
+                                {
+                                    <input type="submit" value="Izmeni dekoraciju" asp-page="./KorisnikZahtevIzborDekoracije" asp-route-id="1" class="btn btn-danger btn-rounded btn-sm my-0" />
+                                }
+
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div style="font-size:xx-large; color:black; margin-left:30px">Ukupna cena:
+            <div style="font-size:xx-large; color:black; font-weight:bold;margin-left:50px"> @Model.MojZahtev.UkupnaCena rsd</div>
+        </div>
+        <br />
+
+        @if (!@Model.MojZahtev.Poslato)
+        {
+            <div class="text-center">
+                <div class="alert-info" style="width:auto">Izmene zahteva su moguce jedino 24h od trenutka slanja zahteva! Nakon toga nasi organizatori ce Vas obavestiti detaljnije o rezervacijama! </div>
+            </div>
+            <div class="text-center">
+                @if (Model.MojZahtev.MojProstor == null && Model.MojZahtev.MojFotograf == null && Model.MojZahtev.MojaMuzika == null && Model.MojZahtev.MojaDekoracija == null)
+                {
+                    <div class="text-center c" style="font-size:x-large">Niste izabrali ni jednu stavku osim datuma tako da ne postoje uslovi za saradnju!</div>
+                    <br />
+                }
+                else
+                {
+                    <input type="submit" value="Posalji zahtev" asp-page-handler="Izaberi" class="btn btn-success btn-rounded btn-sm my-0" />
+                }
+            </div>
+        }
+        else
+        {
+            @if (Model.MojZahtev.Status == "Odbijen")
+            {
+                <div class="text-center">
+                    <div> Ukoliko Vam ovakav zahtev odgovara, kliknite da zelite da posaljete potvrdu!</div>
+                    <input type="submit" value="Posalji potvrdu" asp-page-handler="PosaljiPotvrdu" class="btn btn-success btn-rounded btn-sm my-0" />
+                    <div> Odustajanjem od zahteva se brise Vas zahtev sa svim izabranim stavkama, pa ukoliko zelite mozete kreirati novi! </div>
+                    <input type="submit" value="Odustani od zahteva" asp-page-handler="Odustani" class="btn btn-success btn-rounded btn-sm my-0" />
+
+                    @if (Model.ImaNepotvrdjenih)
+                    {
+                        <div> Ukoliko zelite da izmenite neki od nepotvrdjenih zahteva idi na "Izmeni zahtev"</div>
+                        <input type="submit" value="Izmeni zahtev" asp-page-handler="IzmeniZahtev" class="btn btn-danger btn-rounded btn-sm my-0" />
+                    }
+                </div>
+            }
+            @if (Model.MojZahtev.Status == "Odobren")
+            {
+                <div>
+                    <h1>Cestitamo sve stavke Vaseg zahteva su potvrdjene i rezervisane, mozete ocekivati poziv nasih organizatora oko detaljnijih dogovora!</h1>
+                </div>
+
+            }
+            @if (Model.MojZahtev.Status == null)
+            {
+
+                 @if (Model.MojZahtev.DatumPodnosenjaZahteva.AddDays(1) > DateTime.Now)
+                  {
+                     <div class="text-center">
+                     <div>Izmene zahteva su moguce jedino 24h od trenutka slanja zahteva! Nakon toga nasi organizatori ce Vas obavestiti detaljnije o rezervacijama!</div>
+                        <input type="submit" value="Zelim da izmenim zahtev" asp-page-handler="Naknadno" class="btn btn-danger btn-rounded btn-sm my-0" />
+                     </div>
+                     <br />
+                  }
+             }
+        }
+
+
+
+    </form>
+}
+else
+{
+<form method="POST">
+    <div class="text-center">
+        <img class="animated shake" src="../images/new2.png" style="width:300px;height:300px"/>
+        <h1>Jos uvek nemate kreiran zahtev!</h1>
+        <h2>Da li zelite da napravite svoj zahtev?</h2>
+        <input type="submit" value="Kreiraj zahtev" asp-page-handler="Kreiraj" />
+    </div>
+    <br />
+</form>
+}
+
+<style scoped>
+    .c{
+        color: red;
+    }
+</style>

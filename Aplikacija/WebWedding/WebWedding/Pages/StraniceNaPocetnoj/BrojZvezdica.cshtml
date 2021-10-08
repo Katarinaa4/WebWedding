@@ -1,0 +1,68 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.BrojZvezdicaModel
+@{
+    
+        ViewData["Title"] = "LogOut";
+        if (Model.ImaVecZahtev)
+        {
+            Layout = "_LayoutKorisnikSaZahtevom ";
+        }
+        else
+        {
+            Layout = "_LayoutKorisnik";
+        }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <form method="POST">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title ">
+                        <h2>Vasa ocena kvaliteta odabranog prostora</h2>
+                    </div>
+                </div>
+                <div class="modal-body s1">
+                    <input type="radio" class="bla" name="Broj" value="1" checked />
+                    <label class="custom-control-label www"> 1 </label>
+                    <input type="radio" class="bla" name="Broj" value="2" />
+                    <label class="custom-control-label www "> 2 </label>
+                    <input type="radio" class="bla" name="Broj" value="3" />
+                    <label class="custom-control-label www "> 3 </label>
+                    <input type="radio" class="bla" name="Broj" value="4" />
+                    <label class="custom-control-label www "> 4 </label>
+                    <input type="radio" class="bla" name="Broj" value="5" />
+                    <label class="custom-control-label www "> 5 </label>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" asp-for="@Model.ID" />
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="Izracunaj">
+                        Pošalji
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <style scoped>
+
+        
+        .www {
+            font-size: 20px;
+            color: black;
+        }
+
+        .s1 {
+            width:100%;
+            margin-left:180px;
+            margin-right:30px;
+        }
+
+        .s2{
+            width:100%;
+            margin-right:10px;
+            margin-left:10px;
+        }
+
+    </style>

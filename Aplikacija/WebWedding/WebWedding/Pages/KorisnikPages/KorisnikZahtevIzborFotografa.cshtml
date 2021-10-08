@@ -1,0 +1,194 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikZahtevIzborFotografaModel
+@{
+    ViewData["Title"] = "KorisnikZahtevIzborFotografa";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+    @if (Model.PotvrdiDaNeZelis)
+    {
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        Potvrdite!
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <p>Da li ste sigurni da ne zelite nekog od ponudjenih Fotografa?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad</button>
+                    @if (Model.OvoJeZaNullIzaberi)
+                    {
+                        <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelimProstor">Dalje</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelim">
+                            Ne zelim
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</form>
+@if (!Model.PotvrdiDaNeZelis)
+{
+    <br />
+    <div class="text-center" style="font-size:xx-large"> Dan venčanja je jedinstven – ništa pre i ništa posle neće biti nalik njemu. Tako su i uspomene na taj dan jedinstvene. </div>
+    <div class="text-center" style="font-size:x-large;color:hotpink">Zabelezite sve ove trenutke uz pomoc nekog od nasih fotografa!</div>
+    <form method="POST">
+        @foreach (var fotograf in Model.SviFotografi)
+        {
+
+            @if (fotograf.StatusPrikaza == "Prikaz")
+            {
+                @foreach (var rezervisani in fotograf.Rezervisani)
+                {
+                    @if (rezervisani.datum == Model.MojZahtev.IzabraniDatum)
+                    {
+                        Model.R = true;
+                    }
+
+                }
+
+                @foreach (var zakazani in fotograf.Zakazani)
+                {
+                    @if (zakazani.datum == Model.MojZahtev.IzabraniDatum)
+                    {
+                        Model.Z = true;
+                    }
+
+                }
+                @if (!Model.Z && !Model.R)
+                {
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <div class="container">
+                        <div class="gore">
+                            <div class="row row-eq-height">
+                                <div class="col-sm-4 col-4">
+                                    <div class="panel panel-primary gallery animate-box s2">
+
+
+
+                                        <div class="panel-body" style="width:100%;height:100%;">
+
+                                            <img src="@fotograf.Slika" style="width:100%;height:100%;" alt="Image">
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-4" style="text-align:left">
+                                    <div style="font-size: large;margin-top: 20px;font-size:x-large;font-style:italic"> @fotograf.Ime @fotograf.Prezime</div>
+                                    <br />
+                                    <div style="font-size: large;margin-top: 20px;font-weight:bold">Cena: @fotograf.Cena</div>
+                                    <br />
+                                    <div style="font-size: large;margin-top: 20px;">@fotograf.Opis</div>
+
+                                    <br />
+                                    <div style="font-size: large;margin-top: 20px;">Na ovom linku mozete detaljnije pogledati o ovom fotografu:<a href=" @fotograf.Link"> @fotograf.Link </a></div>
+                                    <br />
+                                </div>
+                                <div class="col-sm-4 col-4">
+                                    @if (fotograf == Model.PrethodniFotograf)
+                                    {<div class="a">
+                                            <div class="aa">
+
+                                                <input type="radio" class="bbla" name="Stiklirano" value="@fotograf.Id" checked  />
+
+                                            </div>
+                                            <div class="aaa" style="margin-top:10px">
+                                                <div class="icon-arrow-bold-left" style="font-weight:bold;font-size:large"> Ovde oznacite da zelite da izaberete ovog fotografa </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div style="margin-top:20px;">
+                                            <input type="submit" value="Odustani od ovog fotografa" asp-page-handler="Odcekiraj" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="a">
+                                            <div class="aa">
+
+                                                <input type="radio" class="bbla" name="Stiklirano" value="@fotograf.Id"  />
+
+                                            </div>
+                                            <div class="aaa" style="margin-top:10px">
+                                                <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold;"> Ovde oznacite da zelite da izaberetog ovog fotografa </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            </div>
+                         </div>
+                            }
+                            }
+
+                            }
+                            @if (Model.jedinica == 1)
+                            {
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-success" style="margin-top: 20px" value="Vrati se na pregled zahteva" asp-page-handler="NaPregled" />
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-outline-dark" style="margin-top: 20px" value="Nazad" asp-page-handler="Nazad" />
+                                    <input type="submit" class="btn btn-success" style="margin-top: 20px;" value="Izaberi" asp-page-handler="Izaberi" />
+                                </div>
+                            }
+                            <br />
+
+                </form>
+}
+<style scoped>
+
+    .ww {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 30px;
+    }
+
+    .aa {
+        height:50px;
+        margin-left: 20%;
+        height: 30px;
+    }
+
+    .aaa {
+        margin-left: -10%;
+        height: 30px;
+    }
+
+    .radioo {
+        margin: 90%;
+    }
+
+    .gore {
+        margin-top: 10%;
+    }
+</style>

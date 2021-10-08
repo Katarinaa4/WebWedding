@@ -1,0 +1,102 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.KreirajNarudzbinuModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if (Model.ImaZahtev)
+        {
+            Layout = "_Layout_PlanerKSZ";
+        }
+        else
+        {
+            Layout = "_Layout_PlanerKBZ";
+        }
+
+    }
+    else
+    {
+        Layout = "_Layout_PlanerK";
+    }
+}
+
+<input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+    <input type="hidden" asp-for="@Model.Narudzbina.Id" />
+    <div asp-validation-summary="All"></div>
+    <div class="modal-dialog s3">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title w">
+                    Izabrani planer
+                </h2>
+            </div>
+            <div class="modal-body s1 ">
+                <div class=" animate-box s3">
+                    <a><img src="@Model.planer.Slika" width="300px" height="200px"></a>
+                    <div class="blog-text">
+                        <div class="prod-title">
+                            <br />
+                            <h1 class="ll"><a> @Model.planer.Naziv</a> <span class="comment"></span></h1>
+
+                            <div class="s2 l"><span class="by">Cena: @Model.planer.Cena rsd</span></div>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="k">Unesite Vasu adresu: <input type="text" asp-for="@Model.Narudzbina.Adresa" /></div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" asp-for="@Model.ID" />
+                <input type="submit" class="btn btn-secondary" asp-page-handler="Potvrdi" value="Potvrdi" />
+                <input type="submit" class="btn btn-secondary" asp-page-handler="Nazad" value="Nazad">
+            </div>
+        </div>
+    </div>
+</form>
+
+<style scoped>
+
+    .w {
+        font-size: 35px;
+        color: #ff6666;
+    }
+
+
+    .l {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .ll {
+        font-size: 45px;
+        color: #8B3A3A;
+    }
+
+    .lll {
+        font-size: 25px;
+        color: #8B3A3A;
+    }
+
+    .s1 {
+        width: 100%;
+        margin-left: 180px;
+        margin-right: 30px;
+    }
+
+    .s2 {
+        width: 100%;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .s3 {
+        width: 60%;
+        text-align: center;
+    }
+
+    .k {
+        font-size: 15px;
+        color: #ff6666;
+    }
+</style>

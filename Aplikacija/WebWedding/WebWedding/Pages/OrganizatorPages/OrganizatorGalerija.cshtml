@@ -1,0 +1,58 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorGalerijaModel
+@{
+    Layout = "_Layout_Organizator_Galerija";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="GET">
+<br />
+    <br />
+<div>
+    <div class="ss"> Dodaj sliku <input type="submit" value="+" asp-page="./OrganizatorDodajSliku" /></div>
+    <br />
+    <br />
+    <br />
+</div>
+ </form>
+
+
+<form method="POST">
+    <div class="fh5co-section-gray">
+        <div class="s1">
+
+            @foreach (var slika in Model.mojeSlike)
+            {
+               
+                <div class="gallery animate-box s2">
+                    <a class="gallery-img image-popup" href="@slika.slika"> <img src="@slika.slika" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">  </a>
+                    <a asp-route-id="@slika.Id" asp-page="./OrganizatorObrisiSliku">Obrisi</a>
+                </div>
+            }
+        </div>
+    </div>
+</form>
+
+
+<style scoped>
+
+    .ww {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20% 20%;
+        margin-left:20px;
+    }
+
+    .ss {
+       text-align:center;
+        font-size: 30px;
+        color: #8B3A3A;
+    }
+    .s2 {
+        width: 90%;
+    }
+</style>

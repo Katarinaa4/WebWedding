@@ -1,0 +1,117 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.ObavestenjeONarudzbiniModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if (Model.ImaZahtev)
+        {
+            Layout = "_Layout_PlanerKSZ";
+        }
+        else
+        {
+            Layout = "_Layout_PlanerKBZ";
+        }
+
+    }
+    else
+    {
+        Layout = "_Layout_PlanerK";
+    }
+}
+
+<input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="post">
+
+    <div>
+        <br />
+        <br />
+        <h1 class="p s modal-header">Obavestenje o statusu narudzbina</h1>
+        <br />
+        <br />
+        <div>
+            @foreach (var nar in @Model.listaNarudzbina)
+            {
+                @if (nar.Status != null)
+                {
+                    <br />
+                    <div id="fh5co-blog-section" class="fh5co-section-gray">
+                        <div class="s1">
+                            <div class="s2 s"><a><img src="@nar.MojPlaner.Slika" width="300px" height="200px" alt="">  </a></div>
+                            <h2 class="ll"><a> @nar.MojPlaner.Naziv</a> <span class="comment"></span></h2>
+                            <div class="s2 l"><span>Cena @nar.MojPlaner.Cena rsd</span></div>
+                            <div class="lll"><a> @nar.Status</a> <span class="comment"></span></div>
+                        </div>
+                    </div>
+                    <br />
+                }
+            }
+        </div>
+        <br />
+        <div class="s3 modal-footer">
+            <div class="pp s"><input type="submit" asp-page-handler="Zatvori" value="Zatvoti" /></div>
+        </div>
+        <br />
+    </div>
+</form>
+
+<style scoped>
+
+    .l {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .ll {
+        font-size: 45px;
+        color: #8B3A3A;
+    }
+
+    .lll {
+        font-size: 25px;
+        color: #8B3A3A;
+    }
+
+    kkk {
+        font-size: 40px;
+        color: #ff6666;
+    }
+
+
+    kl {
+        font-size: 50px;
+        color: #ff6666;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 40% 30% 20% 10%;
+        align-content: center;
+    }
+
+    .s2 {
+        width: 100%;
+    }
+
+    .p {
+        font-size: 35px;
+        color: #8B3A3A;
+    }
+
+    .pp {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .s3 {
+        width: 100%;
+        display: grid;
+        align-content: flex-end;
+    }
+</style>

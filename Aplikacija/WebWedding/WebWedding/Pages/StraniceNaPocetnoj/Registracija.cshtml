@@ -1,0 +1,57 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.RegistracijaModel
+@{
+    ViewData["Title"] = "Registracija";
+    Layout = "_LayoutRegistracija";
+}
+
+    <form method="post">
+        <h2 class="center-block w">Dobrodosli!</h2>
+        @if (Model.sif == true)
+        {
+            <h1>Nepodudaranje u Password i Repeat Password!</h1>
+        }
+        @if (Model.pomocna == true)
+        {
+            <h1>Korisnik sa unetim Email-om vec postoji!</h1>
+        }
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0 form-group">
+                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name" asp-for="NovKorisnik.Ime" required>
+                <span asp-validation-for="NovKorisnik.Ime" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name" asp-for="NovKorisnik.Prezime" required>
+                <span asp-validation-for="NovKorisnik.Prezime" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" asp-for="NovKorisnik.Email" required>
+            <span asp-validation-for="NovKorisnik.Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="exampleInputNumber" placeholder="Phone Number" asp-for="NovKorisnik.BrojTelefona" required>
+            <span asp-validation-for="NovKorisnik.BrojTelefona" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" asp-for="NovKorisnik.Sifra" required>
+                <span asp-validation-for="NovKorisnik.Sifra" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+
+                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" asp-for="@Model.sifra" required>
+                <span asp-validation-for="NovKorisnik.Sifra" class="text-danger"></span>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account" asp-page-handler="Registruj" />
+    </form>
+
+<style scoped>
+
+    .w {
+        font-size: 50px;
+        color: #ff8080 ;
+    }
+</style>

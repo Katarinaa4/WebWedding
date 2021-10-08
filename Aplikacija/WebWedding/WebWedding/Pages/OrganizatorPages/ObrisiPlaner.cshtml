@@ -1,0 +1,43 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.ObrisiPlanerModel
+@{
+    Layout = "_Layout_PlanerOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="s">
+            <br />
+            <h1 class="lll">Da li ste sigurni da zelite da obrisete ovaj planer?</h1>
+            <br />
+            <div class="w">Naziv: @Model.planer.Naziv </div>
+            <br />
+            <div><img src="@Html.DisplayFor(model => model.planer.Slika)" height="200px" width="300px" /></div>
+            <br />
+            <div class="w">Cena: @Model.planer.Cena</div>
+            <br />
+            <div class="w">Broj planera: @Model.planer.BrojPlaneraNaRaspolaganju</div>
+            <br />
+            <div><input type="submit" value="Obriši" asp-route-id="@Model.planer.Id" asp-page-handler="Obrisi" /></div>
+        </div>
+        <br />
+    </form>
+
+    <style scoped>
+        .w {
+            font-size: 20px;
+            color: black;
+        }
+
+
+        .lll {
+            font-size: 25px;
+            color: #8B3A3A;
+        }
+
+        .s {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+    </style>

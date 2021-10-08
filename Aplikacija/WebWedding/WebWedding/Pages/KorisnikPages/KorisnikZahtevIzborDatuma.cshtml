@@ -1,0 +1,51 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikZahtevIzborDatumaModel
+@{
+    ViewData["Title"] = "KorisnikZahtevIzborDatuma";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<div id="fh5co-wrapper">
+    <div id="fh5co-page">
+        <div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(../images/bestday.jpg)">
+            <div class="fh5co-hero" data-section="home">
+                <div class="fh5co-overlay"></div>
+
+                <div class="display-t">
+                    <div class="display-tc">
+                        <div class="container">
+                            <div style="color:antiquewhite;font-size:larger">
+                                Dobro dosli! Ovde zapocinjemo kreiranje zahteva! <br /> Za pocetak odaberite datum, a onda ce Vam se u skladu sa izbranim datumom pojavljivati samo firme koje su dostupne tog dana! <br />
+                             
+                            </div>
+                            <br />
+                            <div class="col-md-10 col-md-offset-1">
+
+                                <form method="POST">
+
+                                    <input type="hidden" asp-for="zahtev.Id" />
+                                    <div asp-validation-summary="All"></div>
+
+                                    <h1 class="icon-arrow-bold-down">Odaberite datum za koji planirate vencanje </h1>
+                                    <input type="date" asp-for="zahtev.IzabraniDatum" required />
+                                    @if (Model.maliDatum == true)
+                                    {
+                                        <label style="color:brown">Molimo Vas izaberite neki drugi datum!</label>
+                                        <label style="color:blanchedalmond">Nije moguce izabrati ovaj datum jer je potrebno vreme za sve pripreme minimum 10 dana od dana podnosenja zahteva!</label>
+                                    }
+                                    <br />
+                                    <input type="submit" class="btn btn-primary btn-user btn-block" value="Dalje" asp-page-handler="Dalje" />
+
+                                </form>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

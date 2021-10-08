@@ -1,0 +1,140 @@
+﻿@page
+@model WebWedding.Pages.Kalendari.KalendarFotografiModel
+@{
+    ViewData["Title"] = "KalendarFotografi";
+    Layout = "_Layout_Kalendar";
+}
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+
+    <!--Stylesheet za kalendar preuzeti sa fullcalendar sajta-->
+    <link href="~/fullcalendar/packages/daygrid/main.css" rel='stylesheet' />
+    <link href="~/fullcalendar/packages/core/main.css" rel='stylesheet' />
+    <!--Stylesheet koji sam napravila za modalne forme koje se prikazuju na stranicama za kalendare-->
+    <!--Stavila sam ih u css/kalendar_ana.css da ne bih ovde to pisala -Ana -->
+    <link href="~/css/kalendar_ana.css" rel="stylesheet" />
+
+    <!--Iz nekog razloga, kad se ova dva nalaze u eksternom .css, razor im automatski doda @@ umesto da bude samo 1-->
+    <!--pa onda animacije ne rade, ne bi trebalo tako da se ponasa, dva @@ treba samo kad se ovde pise -->
+    <style>
+        @@-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @@keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+    </style>
+
+
+    @section scripts{
+
+        <!--Skripte za kalendar, preuzete sa fullcalendar sajta-->
+        <script src="~/fullcalendar/packages/core/main.js"></script>
+        <script src="~/fullcalendar/packages/daygrid/main.js"></script>
+        <script src='~/fullcalendar/packages/interaction/main.js'></script>
+        <!--Skripta koju sam pisala da bi se izvrsio ajax poziv i prikazao kalendar sa eventima i svim funkcionalnostima -->
+        <!--Stavila sam je u poseban folder ajax-unobtrusive/kalendar-ajax-and-js.js da bi bilo unobtrusive, a ne ovde sve da pise -Ana -->
+        <script src="~/lib/ajax-unobtrusive/kalendar-fotografi-ajax-and-js.js"></script>
+    }
+</head>
+<body>
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <div id="myModal" class="modal">
+
+        <!-- Modal koji se pojavi kada se klikne na datum/polje na kalendaru -->
+        <div class="modal-content">
+            <div class="kalendar_modal_header">
+                <span class="close" id="m1c">&times;</span>
+                <h2 style="color:white; text-align:center" id="naslov"></h2>
+            </div>
+            <div class="kalendar_modal_body">
+                <button id="dodajRez">Dodaj rezervisani datum...</button>
+                <button id="dodajZak">Dodaj zakazani datum...</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="modalDodajRez" class="modal">
+
+        <!-- Modal koji se pojavi kada se klikne na dugme Dodaj rezervisani datum iz prethodnog modal-->
+        <div class="modal-content">
+            <form method="post">
+                <div class="kalendar_modal_header">
+                    <span class="close" id="m2c">&times;</span>
+                    <h2 style="color:white; text-align:center">Izaberite fotografa za kojeg dodajete rezervisani datum</h2>
+                </div>
+                <div class="kalendar_modal_body">
+                    <input type="hidden" asp-for="datumRez" value="" /> @*ovaj asp-for ce da napravi polje id="datumRez"*@
+                    <select asp-for="FotografId" asp-items="Model.FotografOptions"></select>
+                    <input type="submit" value="Dodaj" class="btn btn-default" asp-page-handler="DodajRezervisani" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="modalDodajZak" class="modal">
+
+        <!-- Modal koji se pojavi kada se klikne na dugme Dodaj zakazani datum iz prvog modal -->
+        <div class="modal-content">
+            <form method="post">
+                <div class="kalendar_modal_header">
+                    <span class="close" id="m3c">&times;</span>
+                    <h2 style="color:white; text-align:center">Izaberite fotografa za kojeg dodajete zakazani datum</h2>
+                </div>
+                <div class="kalendar_modal_body">
+                    <input type="hidden" asp-for="datumZak" value="" /> @*ovaj asp-for ce da napravi polje id="datumZak"*@
+                    <select asp-for="FotografId" asp-items="Model.FotografOptions"></select>
+                    <input type="submit" value="Dodaj" class="btn btn-default" asp-page-handler="DodajZakazani" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div id="modalObrisiDatum" class="modal">
+
+        <!-- Modal koji se pojavi kada se klikne na event na kalendaru -->
+        <div class="modal-content">
+            <form method="post">
+                <div class="kalendar_modal_header">
+                    <span class="close" id="m4c">&times;</span>
+                    <h2 style="color:white; text-align:center">Da li ste sigurni da zelite da obrisete izabrani dogadjaj?</h2>
+                </div>
+                <div class="kalendar_modal_body">
+                    <input type="hidden" asp-for="datumId" value="" /> @*ovaj asp-for ce da napravi polje id="datumId"*@
+                    <input type="hidden" asp-for="datumTip" value="" />@*ovaj asp-for ce da napravi polje id="datumTip"*@
+                    <input type="submit" value="Obrisi" class="btn btn-default" asp-page-handler="ObrisiDatum" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <h2>Kliknite na datum da biste dodali rezervisani ili zakazani datum. Kliknite na dogadjaj da biste obrisali dogadjaj.</h2>
+    <div id='calendar'></div>
+
+</body>
+</html>
+

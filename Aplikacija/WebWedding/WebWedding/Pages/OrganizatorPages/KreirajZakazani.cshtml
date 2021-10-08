@@ -1,0 +1,39 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.KreirajZakazaniModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="POST">
+    <div class="s">
+        <br />
+        <h1 class="lll"><a>Unesite zakazani termin</a></h1>
+        <br />
+        <input type="hidden" asp-for="ID" />
+        <div asp-validation-summary="All"></div>
+        <div class="w">Datum: <input type="date" asp-for="novZakazani.datum" required /></div>
+        <br />
+        <input class="lll" type="submit" value="Dodaj" asp-page-handler="Dodaj" />
+    </div>
+    <br />
+</form>
+
+
+<style scoped>
+    .w {
+        font-size: 20px;
+        color: black;
+    }
+
+
+    .lll {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+</style>

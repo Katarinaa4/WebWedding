@@ -1,0 +1,77 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminPregledArhiviranihNarudzbinaModel
+@{
+    ViewData["Title"] = "AdminPregledArhiviranihNarudzbina";
+    Layout = "_Layout_Admin";
+}
+    <div style="display:flex; justify-content:center">
+        <h1 style="color:lightcoral">Pregled arhiviranih narudzbina</h1>
+    </div>
+    <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Narudzbina[0].Ime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Narudzbina[0].Prezime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Narudzbina[0].Adresa)
+                </th>
+                <th>
+                    Broj telefona
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Narudzbina[0].Status)
+                </th>
+                <th>
+                    Planer
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Narudzbina)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prezime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Adresa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BrojTelefona)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UkupnaCena)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MojPlaner.Naziv)
+                    </td>
+                    <td>
+                        <a asp-page="./AdminVratiNarudzbinu" asp-route-id="@item.Id">Vrati</a> |
+                        <a asp-page="./AdminObrisiNarudzbinu" asp-route-id="@item.Id">Obrisi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

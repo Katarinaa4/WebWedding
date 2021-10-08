@@ -1,0 +1,74 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminVratiNarudzbinuModel
+@{
+    ViewData["Title"] = "AdminVratiNarudzbinu";
+    Layout = "_Layout_Admin";
+}
+
+    <div style=" display:flex;
+                 flex-direction:column;
+                 align-items:center">
+
+        <h2 style="display:flex;color:lightcoral;">Da li ste sigurni da zelite da vratite ovu narudzbinu?</h2>
+        <div>
+            <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Narudzbina.Ime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.Ime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Narudzbina.Prezime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.Prezime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Narudzbina.Adresa)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.Adresa)
+                </dd>
+                <dt>
+                    Broj Telefona
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.BrojTelefona)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Narudzbina.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.Email)
+                </dd>
+                <dt>
+                    Cena
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.UkupnaCena)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Narudzbina.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.Status)
+                </dd>
+                <dt>
+                    Planer
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Narudzbina.MojPlaner.Naziv)
+                </dd>
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Narudzbina.Id" />
+                <input type="hidden" asp-for="Narudzbina.Arhivirano" />
+                <input type="submit" value="Vrati" class="btn btn-default" /> |
+                <a asp-page="./AdminPregledArhiviranihNarudzbina">Nazad na listu arhiviranih narudzbina</a>
+            </form>
+        </div>
+</div>

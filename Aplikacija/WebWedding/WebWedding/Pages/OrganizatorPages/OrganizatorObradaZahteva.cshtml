@@ -1,0 +1,247 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.OrganizatorObradaZahtevaModel
+@{
+    Layout = "_Layout_ZahtevOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="post">
+        <br />
+        <div class="m">
+            <br />
+            <div class="mm">
+                <h3>Zahtev</h3>
+            </div>
+            <div>
+
+
+                <dl class="form-horizontal">
+                    <br />
+                    <hr>
+                    <dt>
+                        Ukupna cena:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.UkupnaCena)
+                    </dd>
+                    <hr>
+                    <dt>
+                        Korisnik:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.MojKorisnik.Ime)
+                        @Html.DisplayFor(model => model.zahtev.MojKorisnik.Prezime)
+                    </dd>
+                    <hr>
+                    <dt>
+                        Fotograf:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.MojFotograf.Ime)
+                        @Html.DisplayFor(model => model.zahtev.MojFotograf.Prezime)
+                        @if (@Model.zahtev.MojFotograf != null)
+                        {
+                            <br />
+                            @if (@Model.zahtev.PotvrdjenoFotograf == true)
+                            {
+                                <div>Potvrdjeno</div>
+                            }
+                            else if (@Model.zahtev.PotvrdjenoFotograf == false)
+                            {
+                                <div>Odbijeno</div>
+                            }
+                            else
+                            {
+                                <div>Neobradjeno</div>
+                            }
+                            <input type="submit" value="Odobri fotografa" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdobriFotografa" />
+                            <input type="submit" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdbijZahtevFotograf" value="Odbij fotografa" />
+                        }
+                        else
+                        {
+                            <div>Nije odabrano.</div>
+                        }
+                    </dd>
+                    <hr>
+                    <dt>
+                        Dekoracija:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.MojaDekoracija.Naziv)
+                        @if (@Model.zahtev.MojaDekoracija != null)
+                        {
+                            <br />
+                            @if (@Model.zahtev.PotvrdjenoDekoracija == true)
+                            {
+                                <div>Potvrdjeno</div>
+                            }
+                            else if (@Model.zahtev.PotvrdjenoDekoracija == false)
+                            {
+                                <div>Odbijeno</div>
+                            }
+                            else
+                            {
+                                <div>Neobradjeno</div>
+                            }
+                            <input type="submit" value="Odobri dekoraciju" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdobriDekoraciju" />
+                            <input type="submit" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdbijZahtevDekoracija" value="Odbij Dekoraciju" />
+                        }
+                        else
+                        {
+                            <div>Nije odabrano.</div>
+                        }
+                    </dd>
+                    <hr>
+                    <dt>
+                        Muzika:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.MojaMuzika.Naziv)
+                        @if (@Model.zahtev.MojaMuzika != null)
+                        {
+                            <br />
+                            @if (@Model.zahtev.PotvrdjenoMuzika == true)
+                            {
+                                <div>Potvrdjeno</div>
+                            }
+                            else if (@Model.zahtev.PotvrdjenoMuzika == false)
+                            {
+                                <div>Odbijeno</div>
+                            }
+                            else
+                            {
+                                <div>Neobradjeno</div>
+                            }
+                            <input type="submit" value="Odobri muziku" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdobriMuziku" />
+                            <input type="submit" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdbijZahtevMuzika" value="Odbij muziku" />
+                        }
+                        else
+                        {
+                            <div>Nije odabrano.</div>
+                        }
+                    </dd>
+                    <hr>
+                    <dt>
+                        Prostor:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.MojProstor.Naziv)
+                        @if (@Model.zahtev.MojProstor != null)
+                        {
+                            <br />
+                            @if (Model.zahtev.PotvrdjenoProstor == true)
+                            {
+                                <div>Potvrdjeno</div>
+                            }
+                            else if (@Model.zahtev.PotvrdjenoProstor == false)
+                            {
+                                <div>Odbijeno</div>
+                            }
+                            else
+                            {
+                                <div>Neobradjeno</div>
+                            }
+                            <input type="submit" value="Odobri prostor" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdobriProstor" />
+                            <input type="submit" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdbijZahtevProstor" value="Odbij prostor" />
+                        }
+                        else
+                        {
+                            <div>Nije odabrano.</div>
+                        }
+                    </dd>
+                    <hr>
+                    <dt>
+                        Meni:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.MojMeni.Naziv)
+                        @if (@Model.zahtev.MojMeni != null)
+                        {
+                            <br />
+                            @if (@Model.zahtev.PotvrdjenoMeni == true)
+                            {
+                                <div>Potvrdjeno</div>
+                            }
+                            else if (@Model.zahtev.PotvrdjenoMeni == false)
+                            {
+                                <div>Odbijeno</div>
+                            }
+                            else
+                            {
+                                <div>Neobradjeno</div>
+                            }
+                            <input type="submit" value="Odobri meni" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdobriMeni" />
+                            <input type="submit" asp-route-id="@Model.zahtev.Id" asp-page-handler="OdbijZahtevMeni" value="Odbij meni" />
+                        }
+                        else
+                        {
+                            <div>Nije odabrano.</div>
+                        }
+                    </dd>
+                    <hr>
+                    <dt>
+                        Datum  podnosenja zahteva:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.DatumPodnosenjaZahteva)
+                    </dd>
+                    <hr>
+                    <dt>
+                        Izabrani datum:
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.zahtev.IzabraniDatum)
+                    </dd>
+                    <hr>
+                    <dt>
+                        Status zahteva:
+                    </dt>
+                    <dd>
+                        Neobradjen
+                    </dd>
+                </dl>
+                <hr>
+                <br />
+                <form method="post">
+                    <input type="hidden" asp-for="zahtev.Id" />
+                    <input class="llll" type="submit" value="Sacuvaj izmene" asp-route-id="@Model.zahtev.Id" asp-page-handler="Sacuvaj" />
+                    <input class="lll" type="submit" value="Zatvori" asp-page-handler="Zatvori" />
+                </form>
+                <br />
+            </div>
+        </div>
+        <br />
+    </form>
+<style scoped>
+    .w {
+        font-size: 20px;
+        color: black;
+    }
+
+
+    .lll {
+        font-size: 17px;
+        margin-left: 5%;
+    }
+
+    .llll {
+        font-size: 17px;
+        margin-left: 34%;
+    }
+
+    .m {
+        margin-left: 5%;
+    }
+
+    .mm {
+        margin-left: 47%;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 20px;
+    }
+</style>

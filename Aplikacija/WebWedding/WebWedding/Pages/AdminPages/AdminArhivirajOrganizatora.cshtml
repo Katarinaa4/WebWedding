@@ -1,0 +1,55 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminArhivirajOrganizatoraModel
+@{
+    ViewData["Title"] = "AdminArhivirajOrganizatora";
+    Layout = "_Layout_Admin";
+}
+
+    <div style=" display:flex;
+                 flex-direction:column;
+                 align-items:center">
+
+        <h2 style="display:flex;color:lightcoral;">Da li ste sigurni da zelite da arhivirate ovog organizatora?</h2>
+        <div>
+            <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Organizator.Ime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Organizator.Ime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Organizator.Prezime)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Organizator.Prezime)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Organizator.Email)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Organizator.Email)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Organizator.Sifra)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Organizator.Sifra)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Organizator.Plata)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Organizator.Plata)
+                </dd>
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Organizator.Id" />
+                <input type="submit" value="Arhiviraj" class="btn btn-default" /> |
+                <a asp-page="./AdminPregledOrganizatora">Nazad na listu organizatora</a>
+            </form>
+        </div>
+</div>

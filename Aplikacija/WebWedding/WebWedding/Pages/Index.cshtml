@@ -1,0 +1,137 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+    <form method="post">
+        <div class="container">
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="col-md-10 col-md-offset-1">
+                <div>
+                    <div class="col-sm-4 rounded-circle ">
+                        <a href="../StraniceNaPocetnoj/Logovanje">
+                            <img src="~/images/tres.png" title="Pregled zahteva" style="width:100px;opacity:0.7" />
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="../StraniceNaPocetnoj/Logovanje">
+
+                            <img src="~/images/uno.png" title="Pregled slobodnih datuma" style="width:100px;height:100px;opacity:0.7">
+                        </a>
+
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="../StraniceNaPocetnoj/Planer">
+                            <img src="~/images/dos.png" title="Naruci planer" style="width:100px;height:100px;opacity:0.7" />
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+
+        <!-- end:header-top -->
+
+        <div id="fh5co-couple" class="fh5co-section-gray">
+            <div class="container">
+                <div id="fh5co-groom-bride">
+
+                    <div class="row padding">
+                        <div class="couple-wrap">
+                            <div class="col-md-6 nopadding animate-box">
+                                <a href="../StraniceNaPocetnoj/ONama"><img src="../images/poc.jpg" class="img-fluid" height="300px" width="400px" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+                            </div>
+                            <div class="col-md-6 nopadding animate-box">
+                                <div class="couple-desc">
+                                    <h1><a href="../StraniceNaPocetnoj/ONama">O nama</a></h1>
+                                    <p>
+                                        WebWedding je agencija koja se bavi organizacijom venčanja.
+                                        Ako još uvek tragate za savršenim prostorom za Vašu proslavu iz snova, agencija WebWedding može da Vam predloži neki od prelepih restorana i hotela sa kojima imamo uspešnu saradnju,
+                                        kao i fantastične bendove, najkreativnije dekoratere i neprevaziđene fotografe!
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row padding">
+                        <div class="couple-wrap">
+                            <div class="col-md-6 col-md-push-6 nopadding animate-box">
+                                <a href="../StraniceNaPocetnoj/Galerija"><img src="../images/cover_bg_3.jpg" class="img-fluid" height="300px" width="400px" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+                            </div>
+                            <div class="col-md-6 col-md-pull-6 nopadding animate-box">
+                                <div class="couple-desc">
+                                    <h1><a href="../StraniceNaPocetnoj/Galerija">Galerija</a></h1>
+                                    <p>
+                                        Venčanje je najlepši događaj u životu dvoje ljudi koji su odlučili da krunišu svoju ljubav.
+                                        Sa željom da Vam omogućimo da u potpunosti uživate u Vašem danu, sa dragim gostima, Vaše snove pretvaramo u stvarnost!
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row padding">
+                            <div class="couple-wrap">
+                                <div class="col-md-6 nopadding animate-box">
+                                    <a href="../StraniceNaPocetnoj/Planer"><img src="../images/pla2.jpg" class="img-fluid" height="300px" width="400px" alt="Free HTML5 Bootstrap Template by FreeHTML5.co"></a>
+                                </div>
+                                <div class="col-md-6 nopadding animate-box">
+                                    <div class="couple-desc">
+                                        <h1><a href="../StraniceNaPocetnoj/Planer">Planer</a></h1>
+                                        <p>
+                                            Budući mladenci, WebWedding je za vas pripremio i divne planere za venčanje!
+                                            Zaboravite na gomilu bespotrebnih papira i beležaka – svoje venčanje kompletno organizujte u nekom od naših planera.
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*@section Scripts{
+                            <script>
+
+                                var korisnikID = document.getElementById('korisnikID').value;
+                                    $(function () {
+
+                                        var url = '/api/Korisnik/';
+                                        url += korisnikID;
+                        $.ajax({
+                            type: 'GET',
+                            url: url,
+                            success: function (data) {
+
+                                var imePrezime = document.getElementById('korisnikIme');
+                                var emailPrikaz = document.getElementById('korisnikEmail');
+
+                                imePrezime.innerHTML = data.ime + data.prezime;
+                                emailPrikaz.innerHTML = data.email;
+                            },
+                            error: function (error) {
+                                alert('failed');
+                            }
+                        })
+
+
+                    }
+                        )
+                            </script>
+                        }*@
+                </div>
+            </div>
+        </div>
+    </form>

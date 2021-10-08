@@ -1,0 +1,57 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.KreirajPlanerModel
+@{
+    Layout = "_Layout_PlanerOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="post" enctype="multipart/form-data">
+    <br />
+    
+    <div class=" st">
+        <h1>Unesite podatke o novom planeru</h1>
+        <input type="hidden" asp-for="ID" />
+        <div asp-validation-summary="All"></div>
+        <div style="display:flex;flex-direction: column; margin-left: 40%; width: 250px;">
+            <div class="w">Naziv:<input type="text" asp-for="novPlaner.Naziv" required /></div>
+            
+            <div class="w">Slika:<input type="file" asp-for="Slika" required /></div>
+            
+            <div class="w">Cena:<input type="number" asp-for="novPlaner.Cena" required /></div>
+            
+            <div class="w">Broj planera:<input type="number" asp-for="novPlaner.BrojPlaneraNaRaspolaganju" required /></div>
+            <br />
+            <div><input class="lll m" type="submit" value="Dodaj" asp-page-handler="Dodaj" /></div>
+        </div>
+        </div>
+        <br />
+</form>
+
+<style scoped>
+
+      .w {
+        font-size:20px;
+        color:black;
+    }
+
+
+    .lll {
+        font-size: 25px;
+        color: #8B3A3A;
+    }
+
+    .s {
+        width: 100%;
+        text-align: start;
+        align-content: flex-start;
+        margin-left:37%;
+    }
+    .st {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+    .m {
+        margin-left:10%;
+    }
+
+</style>

@@ -1,0 +1,47 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.PromeniBrojPlaneraModel
+@{
+    Layout = "_Layout_PlanerOrganizator";
+}
+
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="s">
+           <br />
+            <div><h1>Promenite broj dostuplih primeraka za izabrani planer</h1></div>
+            <br />
+            <div><a><img class="img-responsive w ss" height="300px" width="400px" src="@Model.planer.Slika" alt=""></a></div>
+            <br />
+            <div class="w">Broj planera:<input type="number" value="@Model.planer.BrojPlaneraNaRaspolaganju" asp-for="@Model.broj" required /></div>
+            <br />
+            <div><input class="lll" type="submit" value="Sacuvaj izmenu" asp-page-handler="Izmeni" asp-route-id="@Model.planer.Id" /></div>
+        </div>
+        <br />
+    </form>
+
+    <style scoped>
+        .w {
+            font-size: 20px;
+            color: black;
+        }
+
+
+        .lll {
+            font-size: 20px;
+            color: #8B3A3A;
+        }
+
+        .s {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+
+        .ss {
+            text-align: center;
+            align-content: center;
+            margin-left:35%;
+        }
+
+    </style>

@@ -1,0 +1,33 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.KreirajNapomenuDekoracijaModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="POST">
+
+    <div class="s lll">
+        <br />
+        <h1><a>Unesite napomenu za @Model.dekoracija.Naziv</a></h1>
+        <br />
+        <div><input type="text" width="800px" height="600px" asp-for="@Model.napomena.SadrzajNapomene" required /></div>
+        <br />
+        <div><input type="submit" asp-route-id="@Model.dekoracija.Id" asp-page-handler="Dodaj" value="Dodaj" /></div>
+        <br />
+    </div>
+</form>
+
+<style scoped>
+
+    .lll {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+</style>

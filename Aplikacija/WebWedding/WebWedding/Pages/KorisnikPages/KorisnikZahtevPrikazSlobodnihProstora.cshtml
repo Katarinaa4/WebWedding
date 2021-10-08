@@ -1,0 +1,209 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikZahtevPrikazSlobodnihModel
+@{
+    ViewData["Title"] = "KorisnikZahtevPrikazSlobodnih";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <form method="POST">
+        @if (Model.PotvrdiDaNeZelis)
+        {
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">
+                            Potvrdite!
+                        </h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Da li ste sigurni da ne zelite da neki od ponudjenih prostora?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad</button>
+                        @if (Model.OvoJeZaNullIzaberi)
+                        {
+                            <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelimProstor" >Dalje</button>
+                        }
+                        else
+                        {
+                             <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelim">
+                                Ne zelim
+                             </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+@if (!Model.PotvrdiDaNeZelis)
+{
+<form method="POST">
+    <br />
+    <div class="text-center">
+        <div style="font-size:xx-large">Za dan vencanja koji ste izabrali @Model.MojZahtev.IzabraniDatum, u ponudi imamo sledece slobodne prostore.</div>
+
+        <div style="font-size:xx-large; color:hotpink">Sigurni smo da cete naci odgovarajuci!</div>
+    </div>
+
+    @foreach (var prostor in Model.mojiProstori)
+    {
+        @if (prostor.StatusPrikaza == "Prikaz")
+        {
+            @foreach (var rezervisani in prostor.Rezervisani)
+            {
+                @if (rezervisani.datum == Model.MojZahtev.IzabraniDatum)
+                {
+                    Model.R = true;
+
+                }
+
+            }
+
+            @foreach (var zakazani in prostor.Zakazani)
+            {
+                @if (zakazani.datum == Model.MojZahtev.IzabraniDatum)
+                {
+                    Model.Z = true;
+                }
+
+            }
+            @if (!Model.Z && !Model.R)
+            {
+                <hr class="sidebar-divider d-none d-md-block">
+                <div class="container">
+                    <div class="gore">
+                        <div class="row row-eq-height">
+                            <div class="col-sm-4 col-4">
+                                <div class="gallery animate-box s2">
+                                    <a href="@prostor.Slika"> <img src="@prostor.Slika" class="img-responsive" display="grid" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">  </a>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4 col-4" style="text-align:left">
+                                <div style="font-size:x-large;font-style:italic">@prostor.Naziv </div>
+                                <div> Nalazi na adresi @prostor.Adresa</div>
+                                <br />
+                                <div style="font-weight:bold">Kapacitet ovog prostora je: @prostor.Kapacitet</div>
+                                <br />
+                                <div>@prostor.Opis</div>
+
+                                <br />
+                                <div>
+                                    @for (var i = 0; i < prostor.BrojZvezdica; i++)
+                                    {
+                                        <span class="comment">
+                                            <a><i class="icon-star"></i></a>
+                                        </span>
+                                    }
+                                </div>
+
+                                <br />
+                                <div>Na ovom linku mozete detaljnije pogledati o ovom prostoru <a href="@prostor.Link"> @prostor.Link </a></div>
+                            </div>
+                        
+                        <div class="col-sm-4 col-4">
+                            @if (Model.MojZahtev.MojProstor == prostor)
+
+                            {
+
+                                <div class="a">
+                                    <div class="aa">
+
+                                        <input type="radio" class="bbla" name="Stiklirano" value="@prostor.Id" checked  />
+
+                                    </div>
+                                    <div class="aaa">
+                                        <div class="icon-arrow-bold-left" style="font-size:large;margin-top:10px;font-weight:bold"> Ovde oznacite da zelite da izaberete ovaj prostor </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div style="margin-top:20px">
+                                    <input type="submit" value="Odustani od ovog prostora" asp-page-handler="Odcekiraj" />
+                                </div>
+
+
+                            }
+                            else
+                            {
+
+                                <div class="a">
+                                    <div class="aa">
+                                        <div class="btn-group-toggle">
+                                            <input type="radio" class="bbla btn-group-toggle" name="Stiklirano" value="@prostor.Id"  />
+                                        </div>
+                                    </div>
+                                    <div class="aaa">
+                                        <div class="icon-arrow-bold-left" style="font-size:large;margin-top:10px;font-weight:bold"> Ovde oznacite da zelite da izaberete ovaj prostor </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                       </div>
+                    </div>
+                </div>
+
+            }
+        }
+    }
+
+
+    <input type="hidden" asp-route-id="Stiklirano" />
+    @if (Model.jedinica == 1)
+    {
+        <div class="text-center">
+            <input class="btn btn-success" style="margin-top: 20px" type="submit" value="Vrati se na pregled zahteva" asp-page-handler="NaPregled" />
+        </div>
+    }
+    else
+    {
+        <div class="text-center"
+             >
+            <input type="submit" class="btn btn-outline-dark" style="margin-top: 20px;" value="Nazad" asp-page-handler="Nazad" />
+            <input type="submit" class="btn btn-success" style="margin-top: 20px;" value="Izaberi" asp-page-handler="Izaberi" />
+        </div>
+    }
+    <br />
+
+</form>
+}
+<style scoped>
+
+    .ww {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height:30px;
+    }
+    .aa{
+        height:50px;
+       margin-left:20%;
+        height:30px;
+    }
+    .aaa {
+        margin-left: -10%;
+        height:30px;
+    }
+    .radioo{
+        margin:90%;
+    }
+    .gore{
+        margin-top:10%;
+    }
+
+</style>

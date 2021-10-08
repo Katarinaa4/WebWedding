@@ -1,0 +1,134 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikBrojGostijuModel
+@{
+    ViewData["Title"] = "KorisnikBrojGostiju";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <div id="fh5co-wrapper">
+       <div class="fh5co-overlay"></div>
+        <div id="fh5co-page">
+            <div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(../images/bestday.jpg);">
+                <div class="display-t">
+                    <div class="display-tc">
+                        <div class="container">
+                            <div class="col-md-10 col-md-offset-1">
+
+
+
+
+
+
+
+
+                                <form method="POST">
+                                    @if (Model.ProstorNull)
+                                    {
+
+
+
+
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title">Potvrdite! </h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Nemate izbranii prostor! izaberite prostor!</p>
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad na Moj zahtev</button>
+
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="btn btn-secondary" asp-page-handler="IdiNaProstor">Izaberi prostor</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </form>
+
+                                @*<div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">
+                                        Potvrdite!
+                                    </h2>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Nemate izbranii prostor! izaberite prostor!</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad na Moj zahtev</button>
+
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-secondary" asp-page-handler="IdiNaProstor">Izaberi prostor</button>
+                                </div>
+                            </div>
+                        </div>*@
+
+
+                                @if (!Model.ProstorNull)
+                                {
+
+                                    <form method="POST">
+
+                                        @if (Model.Prekoraceno)
+                                        {
+
+
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 style="color:black" class="modal-title">Uneli ste veliki broj gostiju! Maksimalni broj gostiju za izabrani prostor je @Model.MojZahtev.MojProstor.Kapacitet ! </h1>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h3 style="color:black">Da li zelite da promenite restoran?</h3>
+                                                        <input type="submit" asp-page="../KorisnikPages/KorisnikZahtevPrikazSlobodnihProstora" value="Promeni restoran" />
+                                                        <br />
+                                                        <h3 style="color:black">Da li zelite da promenite broj gostiju? </h3>
+                                                        <input type="submit" asp-page="../KorisnikPages/KorisnikBrojGostiju" value="Promeni broj gostiju" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 style="color:black" class="modal-title">Ukoliko ste izabrali prostor morate upisati broj gostiju da bismo vam izracunali cenu.</h1>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        @*<div style="color:black;font-size:large">Ukoliko ste izabrali prostor morate upisati broj gostiju da bismo vam izracunali cenu.</div>*@
+                                                        <div style="color:black;font-size:large">Ovde unesite broj gostiju:<input type="number" min="40" name="BrojGostiju" value="@Model.MojZahtev.BrojGostiju" required /></div>
+                                                    </div>
+
+
+                                                    @if (Model.jedinica == 1)
+                                                    {
+                                                        <input type="submit" value="Sačuvaj izmenu i vrati se na pregled zahteva" asp-page-handler="NaPregled" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="submit" value="Nazad" asp-page-handler="Nazad" />
+                                                        <input type="submit" value="Dalje" asp-page-handler="Izaberi" />
+                                                    }
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </form>
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

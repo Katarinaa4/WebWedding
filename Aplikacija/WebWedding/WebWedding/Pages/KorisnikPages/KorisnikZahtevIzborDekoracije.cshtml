@@ -1,0 +1,218 @@
+﻿@page
+@model WebWedding.Pages.KorisnikPages.KorisnikZahtevIzborDekoracijeModel
+@{
+    ViewData["Title"] = "KorisnikZahteIzborDekoracije";
+    Layout = "_LayoutKorisnikSaZahtevom ";
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <form method="POST">
+         @if (Model.PotvrdiDaNeZelis)
+        {
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title">
+                            Potvrdite!
+                        </h2>
+                    </div>
+                    <div class="modal-body">
+                        <p>Da li ste sigurni da ne zelite neku od ponudjenih dekoracija?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" asp-page-handler="NazadZaPotvrdu"> Nazad</button>
+                        @if (Model.OvoJeZaNullIzaberi)
+                        {
+                            <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelimProstor">Dalje</button>
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-secondary" asp-page-handler="NeZelim">
+                                Ne zelim
+                            </button>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </form>
+@if (!Model.PotvrdiDaNeZelis)
+{
+<form method="POST">
+    <br />
+    <div class="text-center" style="font-size:xx-large">Ukoliko želite da vaše venčanje pretvorite u nešto stvarno posebno i unikatno, onda morate da obratite pažnju na dekoraciju. </div>
+    <div class="text-center" style="font-size:x-large;color:hotpink">Nudimo Vam saradnju sa najistaknutijim kompanijama koje se bave dekoracijom venčanja i rasvetom za događaje!</div>
+
+    @foreach (var dekoracija in Model.SvaDekoracija)
+    {
+        <div class="row-bottom-padded-sm">
+            @if (dekoracija.StatusPrikaza == "Prikaz")
+            {
+                @foreach (var rezervisani in dekoracija.Rezervisani)
+                {
+                    @if (rezervisani.datum == Model.MojZahtev.IzabraniDatum)
+                    {
+                        Model.R = true;
+                    }
+
+                }
+
+                @foreach (var zakazani in dekoracija.Zakazani)
+                {
+                    @if (zakazani.datum == Model.MojZahtev.IzabraniDatum)
+                    {
+                        Model.Z = true;
+                    }
+
+                }
+                @if (!Model.Z && !Model.R)
+                {
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <div class="container">
+                        <div class="gore">
+                            <div class="row row-eq-height">
+                                <div class="col-sm-4 col-4">
+                                    <div class="panel panel-primary gallery animate-box s2">
+
+
+
+                                        <div class="panel-body" style="width:100%;height:100%;">
+
+                                            <img src="@dekoracija.Slika" style="width:100%;height:100%;" alt="Image">
+
+                                        </div>
+
+                                    </div>
+                                    @*<div class="gallery animate-box s2">
+                                 <div class="gallery animate-box s2" style="width:100%;">
+                                <a class="gallery-img image-popup" href="@dekoracija.Slika" style="width:100%;">
+                                <a class="gallery-img image-popup" href="@dekoracija.Slika">
+                <div style="display: flex;flex-direction: column;margin-left: 20px;justify-content: center;"><img src="@dekoracija.Slika" class="img-responsive" display="grid" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" /></div>
+            </div>*@
+                                </div>
+                                <div class="col-sm-4 col-4" style="text-align:left">
+                                    <div style="font-size: large;margin-top: 20px;font-size:x-large;font-style:italic"> @dekoracija.Naziv</div>
+                                    <br />
+                                    <div style="font-size: large;margin-top: 20px;font-weight:bold">Cena: @dekoracija.Cena</div>
+                                    <br />
+                                    <div style="font-size: large;margin-top: 20px;"> @dekoracija.Opis</div>
+                                    <br />
+                                    <div>
+                                        @for (var i = 0; i < dekoracija.BrojZvezdica; i++)
+                                        {
+                                            <span class="comment">
+                                                <a><i class="icon-star"></i></a>
+                                            </span>
+                                        }
+                                    </div>
+
+                                    <br />
+                                    <div style="font-size: large;margin-top: 20px;">Na ovom linku mozete detaljnije pogledati o ovoj dekoraciji:<a href="@dekoracija.Link "> @dekoracija.Link </a></div>
+                                </div>
+                                <div class="col-sm-4 col-4">
+                                    @if (dekoracija == Model.Prethodna)
+                                    {<div class="a">
+                                            <div class="aa">
+
+                                                <input type="radio" class="bbla form-check-input" name="Stiklirano" value="@dekoracija.Id" checked  />
+
+                                            </div>
+                                            <div class="aaa" style="margin-top:10px">
+                                                <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold"> Ovde oznacite da zelite da izaberete ovu agenciju za dekoraciju </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <div style="margin-top:20px">
+                                            <input type="submit" value="Odustani od ove dekoracije" asp-page-handler="Odcekiraj" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="a">
+                                            <div class="aa">
+
+                                                <input type="radio" class="bbla form-check-input" name="Stiklirano" value="@dekoracija.Id"  />
+
+                                            </div>
+                                            <div class="aaa" style="margin-top:10px">
+                                                <div class="icon-arrow-bold-left" style="font-size:large;font-weight:bold"> Ovde oznacite da zelite da izaberete ovu agenciju za dekoraciju</div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                            }
+                            }
+
+
+
+                        </div>
+                        }
+                        <hr class="sidebar-divider d-none d-md-block">
+                        <input type="hidden" asp-route-id="Stiklirano" />
+                        @if (Model.jedinica == 1)
+                        {
+                            <div class="text-center">
+                                <input type="submit" style="margin-top: 20px" class="btn btn-success " value="Vrati se na pregled zahteva" asp-page-handler="NaPregled" />
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-center">
+                                <input style="margin-top: 20px" class="btn btn-outline-dark" type="submit" value="Nazad" asp-page-handler="Nazad" />
+                                <input style="margin-top: 20px;" class="btn btn-success " type="submit" value="Izaberi" asp-page-handler="Izaberi" />
+                            </div>
+                        }
+                        <br />
+
+
+
+</form>
+}
+<style scoped>
+
+    .ww {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 80%;
+        height: 30px;
+    }
+
+    .aa {
+        height:50px;
+        margin-left: 20%;
+        height: 30px;
+    }
+
+    .aaa {
+        margin-left: -10%;
+        height: 30px;
+    }
+
+    .radioo {
+        margin: 90%;
+    }
+
+    .gore {
+        margin-top: 10%;
+    }
+</style>

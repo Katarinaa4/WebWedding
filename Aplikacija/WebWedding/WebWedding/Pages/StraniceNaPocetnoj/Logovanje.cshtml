@@ -1,0 +1,85 @@
+﻿@page
+@model WebWedding.Pages.LogovanjeModel
+@{
+    ViewData["Title"] = "Logovanje";
+    Layout = "_LayoutLogovanje";
+;}
+    <form method="POST"     class="user">
+
+        <h2 class="wwww center-block">Dobrodosli nazad!</h2>
+        <br />
+        @*<div class="align-items-start">
+
+            <input type="radio" class="bla" name="Type" value="0" checked />
+            <label class="custom-control-label w">Korisnik  </label>
+            <input type="radio" class="bla" name="Type" value="1" />
+            <label class="custom-control-label w">Admin  </label>
+            <input type="radio" class="bla" name="Type" value="2" />
+            <label class="custom-control-label w">Organizator  </label>
+
+        </div>*@
+        @if (Model.Type == 2)
+        {
+            <div>Jos uvek niste registrovani! Molimo Vas prvo se registrujte!</div>
+            <input type="submit" value="Registruj se" asp-page="../StraniceNaPocetnoj/Registracija" />
+        }
+        else
+        {
+            if (Model.Type == 1)
+            {
+            <div class="t alert-danger" style="color:black">@Model.Message</div>
+            <br />
+            }
+        <div class="form-group">
+            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." asp-for="primer.Email">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" asp-for="primer.Sifra">
+        </div>
+        @*<div class="form-group">
+            <div class="custom-control custom-checkbox small">
+                <input type="checkbox" class="custom-control-input" id="customCheck">
+                <label class="custom-control-label www" for="customCheck">Remember Me</label>
+            </div>
+        </div>*@
+        <input type="submit" class="btn btn-primary btn-user btn-block " value="Login" asp-page-handler="Login">
+
+        }
+        <hr>
+        <br />
+        <div class="r">
+            Ukoliko jos uvek niste registrovani kao nas korisnik, to mozete uciniti na sledecem linku 
+            <i class="icon-arrow-right22"></i> 
+            <a href="../StraniceNaPocetnoj/Registracija">Registruj se</a>
+        </div>
+        <br />
+        <hr>
+    </form>
+  
+    <style scoped>
+
+        .w {
+            font-size: 25px;
+            color: #ff8080;
+        }
+
+        .r {
+            font-size: 20px;
+            color: whitesmoke;
+        }
+
+        .t {
+            font-size: 15px;
+            color: whitesmoke;
+        }
+
+        .www{
+            color:snow;
+        }
+
+        .wwww{
+            color:#ff8080;
+            font-size: 50px;
+        }
+
+    </style>

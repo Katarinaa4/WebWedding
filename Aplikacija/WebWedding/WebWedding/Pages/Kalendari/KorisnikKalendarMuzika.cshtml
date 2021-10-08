@@ -1,0 +1,34 @@
+﻿@page
+@model WebWedding.Pages.Kalendari.KorisnikKalendarMuzikaModel
+@{
+    ViewData["Title"] = "KalendarProba";
+    Layout = "_Layout_Korisnik_Kalendar";
+}
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8' />
+
+    <!--Stylesheet za kalendar preuzeti sa fullcalendar sajta-->
+    <link href="~/fullcalendar/packages/daygrid/main.css" rel='stylesheet' />
+    <link href="~/fullcalendar/packages/core/main.css" rel='stylesheet' />
+
+    @section scripts{
+
+        <!--Skripte za kalendar, preuzete sa fullcalendar sajta-->
+        <script src="~/fullcalendar/packages/core/main.js"></script>
+        <script src="~/fullcalendar/packages/daygrid/main.js"></script>
+        <script src='~/fullcalendar/packages/interaction/main.js'></script>
+        <!--Skripta koju sam pisala da bi se izvrsio ajax poziv i prikazao kalendar sa eventima i svim funkcionalnostima -->
+        <!--Stavila sam je u poseban folder ajax-unobtrusive/kalendar-ajax-and-js.js da bi bilo unobtrusive, a ne ovde sve da pise -Ana -->
+        <script src="~/lib/ajax-unobtrusive/korisnik-kalendar-muzika-ajax-and-js.js"></script>
+    }
+</head>
+<body>
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <h2>Ovde mozete videti rezervisane i zakazane datume</h2>
+    <div id='calendar'></div>
+
+</body>
+</html>

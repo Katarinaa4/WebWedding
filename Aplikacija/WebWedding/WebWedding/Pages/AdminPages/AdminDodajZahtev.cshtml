@@ -1,0 +1,145 @@
+﻿@page
+@model WebWedding.AdminDodajZahtevModel
+@{
+    ViewData["Title"] = "AdminDodajZahtev";
+    Layout = "_Layout_Admin";
+}
+    <head>
+        <script type="text/javascript" src="~/lib/jquery-data-getter/meni-select-list-getter.js"></script>
+    </head>
+
+    <div class="row">
+        <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Zahtev.UkupnaCena" class="control-label"></label>
+                    <input asp-for="Zahtev.UkupnaCena" class="form-control" />
+                    <span asp-validation-for="Zahtev.UkupnaCena" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Korisnik</label>
+                    <select name="KorisnikId" asp-items="Model.KorisnikOptions" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.MojKorisnik.Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Prostor</label>
+                    <select name="ProstorId" asp-items="Model.ProstorOptions" class="form-control" id="prostori"></select>
+                    <span asp-validation-for="Zahtev.MojProstor.Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Meni</label>
+                    <select name="MeniId" asp-items="Model.MeniOptions" class="form-control" id="meniji"></select>
+                    <span asp-validation-for="Zahtev.MojMeni.Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Fotograf</label>
+                    <select name="FotografId" asp-items="Model.FotografOptions" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.MojFotograf.Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Muzika</label>
+                    <select name="MuzikaId" asp-items="Model.MuzikaOptions" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.MojaMuzika.Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Dekoracija</label>
+                    <select name="DekoracijaId" asp-items="Model.DekoracijaOptions" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.MojaDekoracija.Id" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Datum Podnosenja Zahteva</label>
+                    <input asp-for="Zahtev.DatumPodnosenjaZahteva" type="date" class="form-control" />
+                    <span asp-validation-for="Zahtev.DatumPodnosenjaZahteva" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Izabrani Datum</label>
+                    <input asp-for="Zahtev.IzabraniDatum" type="date" class="form-control" />
+                    <span asp-validation-for="Zahtev.IzabraniDatum" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                    <label asp-for="Zahtev.Status" class="control-label"></label>
+                    <input asp-for="Zahtev.Status" class="form-control" />
+                    <span asp-validation-for="Zahtev.Status" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="Zahtev.Status" class="control-label"></label>
+                    <select asp-for="Zahtev.Status" asp-items="Model.StatusList" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.Status" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Broj gostiju</label>
+                    <input asp-for="Zahtev.BrojGostiju" class="form-control" />
+                    <span asp-validation-for="Zahtev.BrojGostiju" class="text-danger"></span>
+                </div>
+                @* <div class="form-group">
+                    <label asp-for="Zahtev.PotvrdjenoProstor" class="control-label"></label>
+                    <input asp-for="Zahtev.PotvrdjenoProstor" class="form-control" />
+                    <span asp-validation-for="Zahtev.PotvrdjenoProstor" class="text-danger"></span>
+                </div>
+                    <div class="form-group">
+                        <label asp-for="Zahtev.PotvrdjenoMeni" class="control-label"></label>
+                        <input asp-for="Zahtev.PotvrdjenoMeni" class="form-control" />
+                        <span asp-validation-for="Zahtev.PotvrdjenoMeni" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zahtev.PotvrdjenoMuzika" class="control-label"></label>
+                        <input asp-for="Zahtev.PotvrdjenoMuzika" class="form-control" />
+                        <span asp-validation-for="Zahtev.PotvrdjenoMuzika" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zahtev.PotvrdjenoFotograf" class="control-label"></label>
+                        <input asp-for="Zahtev.PotvrdjenoFotograf" class="form-control" />
+                        <span asp-validation-for="Zahtev.PotvrdjenoFotograf" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Zahtev.PotvrdjenoDekoracija" class="control-label"></label>
+                        <input asp-for="Zahtev.PotvrdjenoDekoracija" class="form-control" />
+                        <span asp-validation-for="Zahtev.PotvrdjenoDekoracija" class="text-danger"></span>
+                    </div>*@
+
+                <div class="form-group">
+                    <label class="control-label">Potvrdjen Prostor</label>
+                    <select asp-for="Zahtev.PotvrdjenoProstor" asp-items="Model.TrueFalseList" class="form-control"> </select>
+                    <span asp-validation-for="Zahtev.PotvrdjenoProstor" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Potvrdjen Meni</label>
+                    <select asp-for="Zahtev.PotvrdjenoMeni" asp-items="Model.TrueFalseList" class="form-control"> </select>
+                    <span asp-validation-for="Zahtev.PotvrdjenoMeni" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Potvrdjena Muzika</label>
+                    <select asp-for="Zahtev.PotvrdjenoMuzika" asp-items="Model.TrueFalseList" class="form-control"> </select>
+                    <span asp-validation-for="Zahtev.PotvrdjenoMuzika" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Potvrdjen Fotograf</label>
+                    <select asp-for="Zahtev.PotvrdjenoFotograf" asp-items="Model.TrueFalseList" class="form-control"> </select>
+                    <span asp-validation-for="Zahtev.PotvrdjenoFotograf" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Potvrdjena Dekoracija</label>
+                    <select asp-for="Zahtev.PotvrdjenoDekoracija" asp-items="Model.TrueFalseList" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.PotvrdjenoDekoracija" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Poslato</label>
+                    <select asp-for="Zahtev.Poslato" asp-items="Model.PoslatoList" class="form-control"></select>
+                    <span asp-validation-for="Zahtev.Poslato" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Dodaj" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div>
+    <a asp-page="AdminPregledZahteva">Nazad na listu zahteva</a>
+</div>
+
+

@@ -1,0 +1,29 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminLogOutModel
+@{
+    ViewData["Title"] = "AdminLogOut";
+    Layout = "_Layout_Admin";
+}
+
+    <form method="POST">
+        <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">
+                        Potvrdite!
+                    </h2>
+                </div>
+                <div class="modal-body">
+                    <p>Da li stvarno zelite da se izlogujete?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="Nazad"> Nazad</button>
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="LogOut">
+                        Potvrdi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+

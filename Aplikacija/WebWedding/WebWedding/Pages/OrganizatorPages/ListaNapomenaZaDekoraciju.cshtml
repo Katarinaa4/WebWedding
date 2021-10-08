@@ -1,0 +1,94 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.ListaNapomenaZaDekoracijuModel
+@{
+    Layout = "_Layout_PrikazMenija_Organizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="post">
+    <br />
+    <br />
+    <h2 class="s ll">Lista napomena za @Model.dekoracija.Naziv</h2>
+    <br />
+    <br />
+    <div>
+        @if (Model.listaNapomena != null)
+            @foreach (var nap in Model.listaNapomena)
+            {
+                <div class="s1 fh5co-section-gray">
+
+                    <div class="s2 l">Dodato: @nap.DatumKreiranja </div>
+                    <div class="s2 lll"> @nap.SadrzajNapomene </div>
+                    <div class="s2"><input type="submit" value="Izmeni" asp-page="./IzmeniNapomenuD" asp-route-id="@nap.Id" asp-route-idD="@Model.dekoracija.Id" /></div>
+                    <div class="s2"><input type="submit" value="Ukloni" asp-page-handler="Ukloni" asp-route-id="@nap.Id" /></div>
+
+                </div>
+                <br />
+            }
+
+    </div>
+    <br />
+</form>
+
+
+<style scoped>
+
+    .l {
+        font-size: 18px;
+        color: #8B3A3A;
+    }
+
+    .ll {
+        font-size: 50px;
+        color: #8B3A3A;
+    }
+
+    .lll {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    kkk {
+        font-size: 40px;
+        color: #ff6666;
+    }
+
+
+    kl {
+        font-size: 50px;
+        color: #ff6666;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 15% 69% 8% 8%;
+        align-content: center;
+        margin-left: 15px;
+    }
+
+    .s2 {
+        width: 100%;
+    }
+
+    .p {
+        font-size: 40px;
+        color: #8B3A3A;
+    }
+
+    .pp {
+        font-size: 25px;
+        color: #8B3A3A;
+    }
+
+    .s3 {
+        width: 100%;
+        display: grid;
+        align-content: flex-end;
+    }
+</style>

@@ -1,0 +1,105 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.ONamaModel
+@{
+    ViewData["Title"] = "ONama";
+    if (Model.ZaKorisnika)
+    {
+        if (Model.ImaZahtev)
+        {
+            Layout = "_Layout_ONama_KorisnikSaZahtevom";
+        }
+        else
+        {
+            Layout = "_Layout_ONama_KorisnikBezZahteva";
+        }
+    }
+    else
+    {
+        Layout = "_LayoutONama";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+    <form method="POST">
+
+     <br />
+        <br />
+        <br />
+        <div class="row row-bottom-padded-lg" style="margin-left:90px;">
+            <div class="s2">
+                <div class="col-md-3 text-center animate-box">
+                    <div class="groom-men">
+                        <a href="../StraniceNaPocetnoj/PrikazProstor">
+                            <img src="../images/pro.jpg"  alt="Free HTML5 Bootstrap Template by FreeHTML5.co" class="img-fluid" height="230px" width="240px">
+                        </a>
+                        <a href="../StraniceNaPocetnoj/PrikazProstor"><h2>Prostor</h2></a>
+                    </div>
+                </div>
+            </div>
+            <div class="s2">
+                <div class="col-md-3 text-center animate-box">
+                    <div class="groom-men">
+                        <a href="../StraniceNaPocetnoj/PrikazFotograf">
+                            <img src="../images/ph.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" class="img-fluid" height="230px" width="240px">
+                        </a>  
+                        <a href="../StraniceNaPocetnoj/PrikazFotograf"><h2>Fotograf</h2></a>
+                    </div>
+                </div>
+            </div>
+            <div class="s2">
+                <div class="col-md-3 text-center animate-box">
+                    <div class="groom-men">
+                        <a href="../StraniceNaPocetnoj/PrikazMuzika">
+                            <img src="../images/muzi.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" class="img-fluid" height="230px" width="240px">
+                        </a>
+                        <a href="../StraniceNaPocetnoj/PrikazMuzika"><h2>Muzika</h2></a>
+                    </div>
+                </div>
+            </div>
+            <div class="s2 ">
+                <div class="col-md-3 text-center animate-box">
+                    <div class="groom-men">
+                        <a href="../StraniceNaPocetnoj/PrikazDekoracija">
+                            <img src="../images/dek.jpg" alt="Free HTML5 Bootstrap Template by FreeHTML5.co" class="img-fluid" height="230px" width="240px">
+                        </a>
+                        <a href="../StraniceNaPocetnoj/PrikazDekoracija"><h2>Dekoracija</h2></a>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                <
+</form>
+
+<style scoped>
+
+    .ww {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .n {
+        width:100%;
+        align-content:center;
+        text-align:center;
+    }
+
+    .s {
+        width:100%;
+        display: grid;
+       grid-template-columns: auto auto auto auto; 
+       margin-left:20px;
+       margin-right:20px;
+    }
+
+    .s1 {
+        width:100%;
+        display: grid;
+       grid-template-columns: auto; 
+     
+    }
+
+    .s2{
+        width:90%;
+    }
+
+
+</style>

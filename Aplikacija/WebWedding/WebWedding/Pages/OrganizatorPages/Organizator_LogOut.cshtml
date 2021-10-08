@@ -1,0 +1,29 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.Organizator_LogOutModel
+@{
+    Layout = "_LayoutOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="POST">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title w">
+                        Potvrdite!
+                    </h2>
+                </div>
+                <div class="modal-body ww">
+                    Da li stvarno zelite da se izlogujete?
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="Nazad"> Nazad</button>
+                    <button type="submit" class="btn btn-secondary" asp-page-handler="LogOut">
+                        Potvrdi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+  

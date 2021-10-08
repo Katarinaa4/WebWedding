@@ -1,0 +1,122 @@
+﻿@page
+@model WebWedding.Pages.AdminPages.AdminVratiZahtevModel
+@{
+    ViewData["Title"] = "AdminVratiZahtev";
+    Layout = "_Layout_Admin";
+}
+
+    <div style=" display:flex;
+                 flex-direction:column;
+                 align-items:center">
+
+        <h2 style="display:flex;color:lightcoral;">Da li ste sigruni da zelite da vratite ovaj zahtev?</h2>
+        <div>
+            <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Zahtev.UkupnaCena)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.UkupnaCena)
+                </dd>
+                <dt>
+                    Korisnik
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.MojKorisnik.Ime) @Html.DisplayFor(model => model.Zahtev.MojKorisnik.Prezime)
+                </dd>
+                <dt>
+                    Fotograf
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.MojFotograf.Ime) @Html.DisplayFor(model => model.Zahtev.MojFotograf.Prezime)
+                </dd>
+                <dt>
+                    Dekoracija
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.MojaDekoracija.Naziv)
+                </dd>
+                <dt>
+                    Muzika
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.MojaMuzika.Naziv)
+                </dd>
+                <dt>
+                    Prostor
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.MojProstor.Naziv)
+                </dd>
+                <dt>
+                    Meni
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.MojMeni.Naziv)
+                </dd>
+                <dt>
+                    Datum podnosenja zahteva
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.DatumPodnosenjaZahteva)
+                </dd>
+                <dt>
+                    Izabrani datum
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.IzabraniDatum)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Zahtev.Status)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.Status)
+                </dd>
+                <dt>
+                    Broj gostiju
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.BrojGostiju)
+                </dd>
+                @*<dt>
+                    Potvrdjen prostor
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.PotvrdjenoProstor)
+                </dd>
+                <dt>
+                    Potvrdjen meni
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.PotvrdjenoMeni)
+                </dd>
+                <dt>
+                    Potvrdjena muzika
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.PotvrdjenoMuzika)
+                </dd>
+                <dt>
+                    Potvrdjen fotograf
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.PotvrdjenoFotograf)
+                </dd>
+                <dt>
+                    Potvrdjena dekoracija
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Zahtev.PotvrdjenoDekoracija)
+                </dd>*@
+            </dl>
+
+            <form method="post">
+                <input type="hidden" asp-for="Zahtev.Id" />
+                <input type="submit" value="Vrati" class="btn btn-default" /> |
+                <a asp-page="./AdminPregledArhiviranihZahteva">Nazad na listu arhiviranih zahteva</a>
+            </form>
+        </div>
+
+</div>

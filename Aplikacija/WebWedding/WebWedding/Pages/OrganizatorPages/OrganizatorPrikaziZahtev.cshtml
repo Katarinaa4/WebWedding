@@ -1,0 +1,117 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.OrganizatorPrikaziZahtevModel
+@{ 
+    Layout = "_Layout_ZahtevOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<br />
+<div class="m">
+    <br />
+    <div class="mm">
+        <h3>Zahtev</h3>
+    </div>
+    <div>
+
+
+        <dl class="dl-horizontal">
+
+            <dt>
+                Ukupna cena:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.UkupnaCena)
+            </dd>
+            <dt>
+                Korisnik:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.MojKorisnik.Ime)
+                @Html.DisplayFor(model => model.zahtev.MojKorisnik.Prezime)
+            </dd>
+            <dt>
+                Fotograf:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.MojFotograf.Ime)
+                @Html.DisplayFor(model => model.zahtev.MojFotograf.Prezime)
+            </dd>
+            <dt>
+                Dekoracija:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.MojaDekoracija.Naziv)
+            </dd>
+            <dt>
+                Muzika:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.MojaMuzika.Naziv)
+            </dd>
+            <dt>
+                Prostor:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.MojProstor.Naziv)
+            </dd>
+            <dt>
+                Meni:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.MojMeni.Naziv)
+            </dd>
+            <dt>
+                Datum  podnosenja zahteva:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.DatumPodnosenjaZahteva)
+            </dd>
+            <dt>
+                Izabrani datum:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.IzabraniDatum)
+            </dd>
+            <dt>
+                Status zahteva:
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.zahtev.Status)
+            </dd>
+        </dl>
+        <br />
+        <form method="post">
+            <input type="hidden" asp-for="zahtev.Id" />
+            <input class="lll" type="submit" value="Zatvori" />
+        </form>
+        <br />
+    </div>
+</div>
+<style scoped>
+    .w {
+        font-size: 20px;
+        color: black;
+    }
+
+
+    .lll {
+        font-size: 17px;
+        margin-left: 17%;
+    }
+
+    .m {
+        margin-left: 38%;
+    }
+
+    .mm {
+         margin-left:17%;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 20px;
+    }
+</style>

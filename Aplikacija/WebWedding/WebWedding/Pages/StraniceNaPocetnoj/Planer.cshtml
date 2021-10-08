@@ -1,0 +1,161 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.PlanerModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if(Model.ImaZahtev)
+        {
+            Layout = "_Layout_Planer_saZahtevom";
+        }
+        else
+        {
+            Layout = "_Layout_Planer_bezZahteva";
+        }
+        
+    }
+    else
+    {
+        Layout = "_Layout_Planer";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="post">
+    <br />
+    <br />
+    <div class="s1">
+        <br />
+        <br />
+        
+            <h2><a class="s p" href="/StraniceNaPocetnoj/PlanerProdavnica">Prodavnica <i class="icon-shop"></i></a></h2>
+        
+        <br />
+        <br />
+        <div class=" s">
+            <br />
+            <div class="s2 a">
+                <div>Zelite sami da organizujete svoje vencanje?</div>
+                <div>Posetite nasu <a href="/StraniceNaPocetnoj/PlanerProdavnica">Prodavnicu <i class="icon-shop"></i></a> i izaberite svoj planer!</div>
+            </div>
+            <br />
+            <br />
+            <div class="ss">
+                <div class="row padding">
+                    <div class="couple-wrap">
+                        <div class="col-md-6 col-md-push-6 nopadding animate-box">
+                            <br />
+                            <img src="~/images/p1.webp" class="img-rounded" height="200px" width="300px" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+                        </div>
+                        <div class="col-md-6 col-md-pull-6 nopadding animate-box">
+                            <div class="couple-desc">
+                                <h1><a href="../StraniceNaPocetnoj/PlanerProdavnica">Narucite odmah!</a></h1>
+                                <div class="aa">
+                                    Zaboravite na gomilu bespotrebnih papira i belezaka – svoje vencanje kompletno organizujte u nekom od nasih planera.
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="s">
+                    <div class="row padding">
+                        <div class="couple-wrap">
+                            <div class="col-md-6 col-md-push-6 nopadding animate-box">
+                                <br />
+                                <img src="~/images/p2.jpg" class="img-rounded" height="200px" width="300px" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+
+                            </div>
+                            <div class="col-md-6 col-md-pull-6 nopadding animate-box">
+                                <div class="couple-desc">
+
+                                    <div class="aa">
+                                        <br />
+                                        Narucite Vas primerak planera i stize Vam na kucnu adresu Vec sutradan!
+                                        A kada Vam stigne Vas primerak, duboko udahnite i krenite u avanturu!
+                                        <br />
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s">
+                        <div class="row padding">
+                            <div class="couple-wrap">
+                                <div class="col-md-6 col-md-push-6 nopadding animate-box">
+                                    <br />
+                                    <img src="~/images/p3.jpg" class="img-rounded" height="200px" width="300px" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
+
+                                </div>
+                                <div class="col-md-6 col-md-pull-6 nopadding animate-box">
+                                    <div class="couple-desc">
+                                        <br />
+                                        <div class="aa">
+                                            <br />
+                                            Placanje pouzecu!
+                                            <br />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        
+                    </div>
+
+                    <div class="a s">
+                        <div><i class="icon-heart-outlined"></i> Da li ste spremni da olakšate sebi put do bezbrizne realizacije? <i class="icon-heart-outlined"></i></div>
+                        <div>Pogledajte sta imamo u ponudi <i class="icon-arrow-right22"></i> <a href="/StraniceNaPocetnoj/PlanerProdavnica"> Prodavnica <i class="icon-shop"></i></a></div>
+                        <br />
+                    </div>
+
+                    <br />
+                </div>
+                <br />
+                </div>
+            </div>
+</form>
+
+<style scoped>
+    .p {
+        font-size: 40px;
+        color: #8B3A3A;
+    }
+
+    .a {
+        font-size: 40px;
+        color: black;
+    }
+
+    .a {
+        font-size: 20px;
+        color: black;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 60px;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+    }
+
+    .ss {
+        width: 90%;
+        display: grid;
+        grid-template-columns: auto;
+        margin-right: 30px;
+    }
+   
+</style>

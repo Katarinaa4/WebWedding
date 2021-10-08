@@ -1,0 +1,153 @@
+﻿@page
+@model WebWedding.AdminPregledZahtevaModel
+@{
+    ViewData["Title"] = "AdminPregledZahteva";
+    Layout = "_Layout_Admin";
+}
+
+    <input type="hidden" id="adminID" asp-for="@Model.AdminID">
+    <div style="display:flex; justify-content:center">
+        <h1 style="color:lightcoral">Pregled zahteva</h1>
+    </div>
+<p>
+    <a asp-page="AdminDodajZahtev">Dodaj novi zahtev</a>
+</p>
+<div class="table-responsive text-nowrap">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Cena
+                </th>
+                <th>
+                    Korisnik
+                </th>
+                <th>
+                    Fotograf
+                </th>
+                <th>
+                    Dekoracija
+                </th>
+                <th>
+                    Muzika
+                </th>
+                <th>
+                    Prostor
+                </th>
+                <th>
+                    Meni
+                </th>
+                <th>
+                    Datum podnosenja
+                </th>
+                <th>
+                    Datum vencanja
+                </th>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Broj gostiju
+                </th>
+                <th>
+                    Poslato
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Zahtevi)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UkupnaCena)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MojKorisnik.Ime) @Html.DisplayFor(modelItem => item.MojKorisnik.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MojFotograf.Ime) @Html.DisplayFor(modelItem => item.MojFotograf.Prezime)
+                    <br />
+                    @{
+                        string prikaziFotograf;
+                        if (item.PotvrdjenoFotograf == true)
+                            prikaziFotograf = "Potvrdjeno";
+                        else prikaziFotograf = "Nepotvrdjeno";
+                    }
+                    (@prikaziFotograf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MojaDekoracija.Naziv)
+                    <br />
+                    @{
+                        string prikaziDekoracija;
+                        if (item.PotvrdjenoDekoracija == true)
+                            prikaziDekoracija = "Potvrdjeno";
+                        else prikaziDekoracija = "Nepotvrdjeno";
+                    }
+                    (@prikaziDekoracija)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MojaMuzika.Naziv)
+                    <br />
+                    @{
+                        string prikaziMuzika;
+                        if (item.PotvrdjenoMuzika == true)
+                            prikaziMuzika = "Potvrdjeno";
+                        else prikaziMuzika = "Nepotvrdjeno";
+                    }
+                    (@prikaziMuzika)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MojProstor.Naziv)
+                    <br/>
+                    @{
+                        string prikaziProstor;
+                        if (item.PotvrdjenoProstor == true)
+                            prikaziProstor = "Potvrdjeno";
+                        else prikaziProstor = "Nepotvrdjeno";
+                    }
+                    (@prikaziProstor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MojMeni.Naziv)
+                    <br />
+                    @{
+                        string prikaziMeni;
+                        if (item.PotvrdjenoMeni == true)
+                            prikaziMeni = "Potvrdjeno";
+                        else prikaziMeni = "Nepotvrdjeno";
+                    }
+                    (@prikaziMeni)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumPodnosenjaZahteva)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IzabraniDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrojGostiju)
+                </td>
+                <td>
+                    @{
+                        string prikaziPoslato;
+                        if (item.Poslato == true)
+                            prikaziPoslato = "Da";
+                        else prikaziPoslato = "Ne";
+                    }
+                    @prikaziPoslato
+                </td>
+                <td>
+                    <a asp-page="./AdminIzmeniZahtev" asp-route-id="@item.Id">Izmeni</a> |
+                    <a asp-page="./AdminArhivirajZahtev" asp-route-id="@item.Id">Arhiviraj zahtev</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

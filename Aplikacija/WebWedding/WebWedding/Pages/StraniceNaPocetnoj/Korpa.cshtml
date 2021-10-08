@@ -1,0 +1,123 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.KorpaModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if (Model.ImaZahtev)
+        {
+            Layout = "_Layout_PlanerKSZ";
+        }
+        else
+        {
+            Layout = "_Layout_PlanerKBZ";
+        }
+
+    }
+    else
+    {
+        Layout = "_Layout_PlanerK";
+    }
+}
+
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="post">
+
+    <div>
+        <br />
+        <br />
+        <div class=" s"><h1><i class="icon-heart"></i> Vasa korpa <i class="icon-heart"></i></h1></div>
+        <br />
+        <br />
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            @foreach (var nar in Model.listaNarudzbina)
+            {
+                @if (nar.Status == null || nar.Status == "Rasprodato")
+                {
+                    <br />
+                    <div class="blog-text">
+                        <div class="s1">
+                            <div class="s2 s"><a><img src="@nar.MojPlaner.Slika" width="300px" height="200px" alt="">  </a></div>
+                            <div class="s2 s ll"><a><h2> @nar.MojPlaner.Naziv </h2></a> <span class="comment"></span></div>
+                            <div class="s2 s l">
+                                <div><span class="by">Cena @nar.MojPlaner.Cena rsd</span></div>
+                                @if (nar.Status == "Rasprodato")
+                                {
+                                    <div><span class="by">Status: @nar.Status </span></div>
+                                }
+                            </div>
+                            <div><input type="submit" asp-page-handler="Ukloni" asp-route-id="@nar.Id" value="Ukloni" /></div>
+                        </div>
+                    </div>
+                    <br />
+                }
+            }
+        </div>
+        <br />
+        <div class="s3">
+            <div class="pp s">Ukupna cena: @Model.ukupnaCena rsd</div>
+            @if (!Model.praznaKorpa)
+            {
+                <div class="pp s"><a asp-page="../StraniceNaPocetnoj/PosaljiNarudzbinu" asp-route-cena="@Model.ukupnaCena">Naruči <i class="icon-arrow-right2"></i></a></div>
+            }
+        </div>
+        <br />
+    </div>
+
+</form>
+
+<style scoped>
+
+    kkk {
+        font-size: 40px;
+        color: #ff6666;
+    }
+
+
+    .l {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .ll {
+        font-size: 45px;
+        color: #8B3A3A;
+    }
+
+    .lll {
+        font-size: 25px;
+        color: #8B3A3A;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 40% 30% 20% 10%;
+        align-content: center;
+    }
+
+    .s2 {
+        width: 100%;
+    }
+
+    .p {
+        font-size: 35px;
+        color: #8B3A3A;
+    }
+
+    .pp {
+        font-size: 27px;
+        color: #8B3A3A;
+    }
+
+    .s3 {
+        width: 100%;
+        display: grid;
+        align-content: flex-end;
+    }
+</style>

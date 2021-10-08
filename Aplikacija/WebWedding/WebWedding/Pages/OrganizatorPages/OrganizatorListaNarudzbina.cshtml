@@ -1,0 +1,118 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.OrganizatorListaNarudzbinaModel
+@{
+    Layout = "_Layout_PlanerOrganizator";
+}
+
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="post">
+
+    <div>
+        <br />
+        <br />
+        <h2 class="p s">Lista narudzbina</h2>
+        <br />
+        <br />
+        <div id="fh5co-blog-section" class="fh5co-section-gray">
+            @foreach (var nar in Model.listaN)
+            {
+                @if (nar.Status == "Naruceno" || nar.Status == "Poslato")
+                {
+                    <br />
+                    <div class="blog-text">
+                        <div class="s1">
+                            <div class="s2 s"><a><img src="@nar.MojPlaner.Slika" width="250px" height="150px" alt="">  </a></div>
+                            <div class="s2 s ll"><h1> @nar.MojPlaner.Naziv</h1> <span class="comment"></span></div>
+                            <div class="s2 s l"><span class="comment">Adresa: @nar.Adresa</span></div>
+                            <div class="s2 s l">
+                                <span class="by">Cena: @nar.MojPlaner.Cena rsd</span>
+                                <span class="by">Status: @nar.Status</span>
+                            </div>
+                            <div class="a">
+                                @if (nar.Status == "Naruceno")
+                                {
+                                    <div><input type="submit" asp-page-handler="Poslato" asp-route-id="@nar.Id" value="Status POSLATO" /></div>
+                                }
+                                <div><input type="submit" asp-page-handler="Isporuceno" asp-route-id="@nar.Id" value="Status ISPORUČENO" /></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                }
+            }
+        </div>
+        <br />
+   
+        <br />
+    </div>
+
+</form>
+
+<style scoped>
+
+    kkk {
+        
+        font-size: 40px;
+        color: #ff6666;
+    }
+
+
+    .l {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .ll {
+        font-size: 50px;
+        color: #8B3A3A;
+    }
+
+    .lll {
+        
+        font-size: 30px;
+        color: #8B3A3A;
+    }
+
+    .s {
+        width: 100%;
+        text-align: center;
+        align-content: center;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 13% 13% 13%;
+        align-content: center;
+    }
+
+    .a {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-content: center;
+       margin-left:20px;
+    }
+
+    .s2 {
+        width: 100%;
+    }
+
+    .p {
+       
+        font-size: 40px;
+        color: #8B3A3A;
+    }
+
+    .pp {
+        
+        font-size: 25px;
+        color: #8B3A3A;
+    }
+
+    .s3 {
+        width: 100%;
+        display: grid;
+        align-content: flex-end;
+    }
+</style>

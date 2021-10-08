@@ -1,0 +1,37 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.OrganizatorObrisiSlikuModel
+@{
+    Layout = "_Layout_SlikaOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+    <form method="POST">
+        <div class="s">
+            <br />
+            <h1 class="lll">Da li ste sigurni da zelite da obrisete ovu sliku?</h1>
+            <br />
+            <div><img src="@Html.DisplayFor(model => model.Slika.slika)" height="200px" width="300px" /></div>
+            <br />
+            <input type="hidden" asp-for="Slika.Id" />
+            <input class="lll" type="submit" value="Obrisi" />
+        </div>
+        <br />
+    </form>
+
+    <style scoped>
+        .w {
+            font-size: 20px;
+            color: black;
+        }
+
+
+        .lll {
+            font-size: 20px;
+            color: #8B3A3A;
+        }
+
+        .s {
+            width: 100%;
+            text-align: center;
+            align-content: center;
+        }
+    </style>

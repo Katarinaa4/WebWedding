@@ -1,0 +1,116 @@
+﻿@page
+@model WebWedding.Pages.StraniceNaPocetnoj.PrikazDekoracijaModel
+@{
+    @if (Model.ZaKorisnika)
+    {
+        @if (Model.ImaZahtev)
+        {
+            Layout = "_LayoutSZ";
+        }
+        else
+        {
+            Layout = "_LayoutBZ";
+        }
+    }
+    else
+    {
+        Layout = "_LayoutMeniji";
+    }
+}
+    <input type="hidden" id="korisnikID" asp-for="@Model.KorisnikID">
+<form method="POST">
+
+    <div id="fh5co-blog-section" class="fh5co-section-gray">
+        <div class="s">
+            <div class="n">
+                <h1>Firme sa kojima saradjujemo</h1>
+                <div style="font-size:large">U okviru svake firme mozete videti koji datumi su slobodni!</div>
+                <br />
+            </div>
+            <br />
+            <div class="s1">
+
+
+                @foreach (var deko in Model.mojaDekoracija)
+                {
+                    <div>
+                        @if (deko.StatusPrikaza == "Prikaz")
+                        {
+
+                            <div class="fh5co-blog animate-box s2">
+                                <a href="@deko.Link"><img class="img-responsive" src="@deko.Slika" alt=""></a>
+                                <div class="blog-text">
+                                    <div class="prod-title">
+                                        <h1><a href="@deko.Link"> @deko.Naziv </a></h1>
+                                        @if (Model.ImaZahtev)
+                                        {
+                                            <div>
+                                                @for (var i = 0; i < deko.BrojZvezdica; i++)
+                                                {
+                                                    <span class="comment">
+                                                        <a><i class="icon-star"></i></a>
+                                                    </span>
+                                                }
+                                                <a asp-page="../StraniceNaPocetnoj/BrojZvezdicaDekoracija" asp-route-id="@deko.Id"> Ocenite nas i vi!</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div>
+                                                @for (var i = 0; i < deko.BrojZvezdica; i++)
+                                                {
+                                                    <span class="comment">
+                                                        <a><i class="icon-star"></i></a>
+                                                    </span>
+                                                }
+                                            </div>
+                                        }
+                                        <span class="by">Cena - @deko.Cena rsd</span>
+                                        <p>@deko.Opis</p>
+                                        @if (Model.ZaKorisnika)
+                                        {
+                                            <p><a asp-page="../Kalendari/KorisnikKalendarDekoracije" asp-route-id="@deko.Id"><i class="icon-calendar"></i>   Zakazani i rezervisani datumi...</a></p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</form>
+
+<style scoped>
+
+    .ww {
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .n {
+        width: 100%;
+        align-content: center;
+        text-align: center;
+    }
+
+    .s {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+</style>

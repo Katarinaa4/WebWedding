@@ -1,0 +1,86 @@
+﻿@page
+@model WebWedding.Pages.OrganizatorPages.Organizator_Planer_ProdavnicaModel
+@{
+    Layout = "_Layout_PlanerOrganizator";
+}
+    <input type="hidden" id="organizatorID" asp-for="@Model.OrganizatorID">
+<form method="post">
+    <br />
+    <br />
+    <div class="s">
+        <h2 class="w "><strong><a>Dodaj planer</a></strong> <input type="submit" value="+" asp-page="../OrganizatorPages/KreirajPlaner"/></h2>
+        <h2 class="w"><strong><a asp-page="../OrganizatorPages/OrganizatorListaNarudzbina">Lista narudzbina <i class="icon-list"></i></a></strong></h2>
+    </div>
+    <br />
+    <br />
+    <div class="s1">
+
+        @foreach (var planer in Model.listaPlanera)
+        {
+            @if (planer.Status == null)
+            {
+        <div class="fh5co-blog animate-box s2">
+            <a><img src="@planer.Slika" width="100px" height="200px" alt=""></a>
+            <div class="blog-text">
+                <div class="prod-title">
+                    <h1 ><a class="ll"> @planer.Naziv</a> <span class="comment"></span></h1>
+                    @if (planer.BrojPlaneraNaRaspolaganju == 0)
+                    {
+                        <div class="s2 l">Rasprodat</div>
+                    }
+                    <div class="s2 l"><span>Cena @planer.Cena rsd</span></div>
+                </div>
+            </div>
+
+            <div class="fc-footer-toolbar">
+                <a asp-page="../OrganizatorPages/PromeniBrojPlanera" asp-route-id="@planer.Id">Promeni broj planera</a>
+                <a>||</a>
+                <a asp-page="../OrganizatorPages/ObrisiPlaner" asp-route-id="@planer.Id">Obrisi planer</a>
+            </div>
+        </div>
+
+
+                }
+
+
+            }
+
+    </div>
+
+</form>
+
+<style scoped>
+
+    .w {
+        font-size: 30px;
+        color: #ff6666;
+    }
+
+    .s1 {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 24% 24% 24% 24%;
+        margin-left:30px;
+        
+    }
+     .l {
+        font-size: 20px;
+        color: #8B3A3A;
+    }
+
+    .ll {
+        font-size: 30px;
+        color: #8B3A3A;
+    }
+
+    .s2 {
+        width: 90%;
+    }
+
+    .s{
+        width:100%;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        text-align:center;
+    }
+</style>

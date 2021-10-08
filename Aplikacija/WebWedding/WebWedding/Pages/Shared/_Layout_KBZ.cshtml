@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>WebWedding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+    <meta name="author" content="FREEHTML5.CO" />
+
+    <!--
+      //////////////////////////////////////////////////////
+
+      FREE HTML5 TEMPLATE
+      DESIGNED & DEVELOPED by FREEHTML5.CO
+
+      Website: 		http://freehtml5.co/
+      Email: 			info@freehtml5.co
+      Twitter: 		http://twitter.com/fh5co
+      Facebook: 		https://www.facebook.com/fh5co
+
+      //////////////////////////////////////////////////////
+       -->
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="srce2.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Montez" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="~/css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="~/css/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <!-- Superfish -->
+    <link rel="stylesheet" href="~/css/superfish.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="~/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+
+
+    <!-- Modernizr JS -->
+    <script src="~/js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+    <header id="fh5co-header-section" class="sticky-banner">
+        <div class="container">
+            <div class="nav-header">
+                <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+                <h1 id="fh5co-logo"><a asp-page="/Index">WebWedding</a></h1>
+                <!-- START #fh5co-menu-wrap -->
+                <nav id="fh5co-menu-wrap" role="navigation">
+                    <ul class="sf-menu" id="fh5co-primary-menu">
+                        <li class="active"><a asp-page="../KorisnikPages/KorisnikPocetna">Početna</a></li>
+                        <li>
+                            <a asp-page="/StraniceNaPocetnoj/ONama" class="fh5co-sub-ddown"> O nama</a>
+                        </li>
+                        <li><a asp-page="/StraniceNaPocetnoj/Galerija">Galerija</a></li>
+                        <li><a asp-page="/StraniceNaPocetnoj/Planer">Planer venčanja</a></li>
+                        <li><a asp-page="/KorisnikPages/KorisnikPregledZahteva">Moj zahtev</a></li>
+                        <li><a asp-page="/KorisnikPages/KorisnikZahtevIzborDatuma">Novi zahtev</a></li>
+                        <li><a asp-page="/KorisnikPages/LogOut">Odjavi se</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Nalog
+                                <b @*class="caret"*@></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-content">
+                                        <div class="row">
+                                            @* <div class="col-lg-5">
+            <img src="http://placehold.it/120x120"
+                 alt="Alternate Text" class="img-responsive" />
+
+        </div>*@
+                                            <div class="col-lg-7">
+                                                <span id="korisnikIme" class="text-center"></span>
+                                                <p class="text-muted small text-center" id="korisnikEmail">
+
+                                                </p>
+                                                <!--<div class="divider">
+    </div>-->
+                                                
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="navbar-footer">
+                                        <div class="navbar-footer-content">
+                                            <div class="row">
+                                                <div >
+                                                    <a asp-page="..//KorisnikPages/KorisnikPodesavanjeNaloga" asp-route-id="@Model.KorisnikID" class="btn btn-default btn-sm">Podesavanja</a>
+
+                                                </div>
+                                                <div>
+                                                    <a asp-page="../KorisnikPages/LogOut" class="btn btn-default btn-sm ">Odjavi se</a>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="fh5co-wrapper">
+        <div id="fh5co-page">
+
+            <div class="fh5co-hero" data-section="home">
+                <div class="fh5co-overlay"></div>
+                <div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(../images/s.jpg);">
+                    <div class="display-t">
+                        <div class="display-tc">
+                            <div class="container">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <div class="animate-box ">
+                                        <h2>WebWedding</h2>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                @*<div class="col-md-10 col-md-offset-1">
+                                                    <div>
+                                                        <div class="col-sm-4 ">
+                                                            <a href="../KorisnikPages/KorisnikPregledZahteva">
+                                                                <img src="~/images/tres.png" title="Pregled zahteva" style="width:100px" />
+                                                            </a>
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <a href="../StraniceNaPocetnoj/ONama">
+
+                                                                <img src="~/images/uno.png" title="Pregled slobodnih datuma" style="width:100px;height:100px" />
+                                                            </a>
+
+                                                        </div>
+                                                        <div class="col-sm-4">
+                                                            <a href="../StraniceNaPocetnoj/Planer">
+                                                                <img src="~/images/dos.png" title="Naruci planer" style="width:100px;height:100px" />
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
+
+
+
+                                <!-- end:header-top -->
+
+
+                                <div>@RenderBody()</div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="fh5co-couple" class="fh5co-section-gray">
+                        <div class="container">
+                            <div class="row row-bottom-padded-md animate-box">
+                                <div class="col-md-6 col-md-offset-3 text-center">
+                                    <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
+                                        <img src="../images/bridesmaid-1.jpg" class="img-responsive">
+
+                                    </div>
+                                    <div class="col-md-2 col-sm-2 col-xs-2 nopadding"><h2 class="amp-center"><i class="icon-heart"></i></h2></div>
+                                    <div class="col-md-5 col-sm-5 col-xs-5 nopadding">
+                                        <img src="../images/groom-men-1.jpg" class="img-responsive">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row animate-box">
+                                <div class="col-md-8 col-md-offset-2">
+                                    <div class="col-md-12 text-center heading-section">
+                                        <h2>Na hiljade zadovoljih parova</h2>
+                                        <h3>koji su bili nasi korisnici</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div id="fh5co-started" style="background-image:url(../images/s.jpg);" data-stellar-background-ratio="1">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row animate-box">
+                                <div class="col-md-8 col-md-offset-2 text-center heading-section">
+                                    <div><h2>Zapocnite sa planiranjem sada!</h2></div>
+
+                                </div>
+                            </div>
+                            <div class="row animate-box">
+                                <div class="col-md-10 col-md-offset-1">
+                                    <form class="form-inline">
+
+                                        <div class="col-md-4 col-sm-4">
+
+                                            <input type="submit" class="btn btn-primary btn-block" asp-page="../KorisnikPages/KorisnikZahtevIzborDatuma" value="Pocni planiranje" />
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer>
+                        <div id="footer">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12 text-center ">
+                                        <h2> WebWedding </h2>
+                                        <div>
+                                            <h1> webwedding@email.com </h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+
+
+
+                </div>
+                <!-- END fh5co-page -->
+            </div>
+            <!-- END fh5co-wrapper -->
+            <!-- Google Map -->
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+            <!-- jQuery -->
+            <script src="~/dist/scripts.min.js"></script>
+            <!--Skripta za pribavljanje podataka o korisniku koji se prikazuju u Account padajucoj listi-->
+            <script src="~/lib/jquery-data-getter/account-data-getter-ajax-jquery.js"></script>
+
+            @* @RenderSection("Scripts");*@
+</body>
+</html>
+
+<style scoped>
+
+    .w {
+        font-family: Vivaldi;
+        font-size: 70px;
+        color: snow;
+    }
+
+    .ww {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: snow;
+    }
+
+    .www {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .wwww {
+        font-family: Vivaldi;
+        font-size: 40px;
+        color: snow;
+    }
+
+    .wb {
+        font-family: Vivaldi;
+        font-size: 60px;
+        color: #ff6666;
+    }
+
+    .wwb {
+        font-family: Vivaldi;
+        font-size: 35px;
+        color: #ff8080;
+    }
+</style>
